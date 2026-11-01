@@ -80,6 +80,7 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
       "Watch the KO-DB build: storage, WAL, TCP layer, sharding",
       "Play with the KO-DB terminal right here on the page",
       "Read my backend roadmap: the path I'd take again",
+      "Books on my shelf: DDIA, Software Architecture in Practice, Clean Architecture, Clean Code, Dive Into Design Patterns",
       "Questions? My inbox is open",
     ],
     cta: { label: "Go to the student corner", href: "#students" },
@@ -546,6 +547,15 @@ export const credentials: { kind: "award" | "community" | "course"; title: strin
   { kind: "community", title: "IEEE volunteer, Technical Committee", issuer: "IEEE AAST Alexandria Student Branch", date: "", detail: "Technical committee volunteer" },
   { kind: "course", title: "Ultimate Design Patterns", issuer: "Udemy · Mahmoud Youssef", date: "Jan 2026", detail: "11 hours", url: "https://ude.my/UC-60ae1887-7bdd-45f8-98cd-87b239dbcb9e" },
   { kind: "course", title: "The Complete 2023 Web Development Bootcamp", issuer: "Udemy · Dr. Angela Yu", date: "Aug 2023", detail: "66 hours", url: "https://ude.my/UC-abbf2837-8fd2-4f22-9e7d-1bc71c2272a4" },
+];
+
+// cover: image in /public/books. Without one, the bookshelf draws a typographic cover.
+export const books: { title: string; author: string; subtitle?: string; cover?: string; color?: string }[] = [
+  { title: "Designing Data-Intensive Applications", author: "Martin Kleppmann", subtitle: "The big ideas behind reliable, scalable, and maintainable systems", cover: "/books/ddia.jpg" },
+  { title: "Software Architecture in Practice", author: "Len Bass, Paul Clements, Rick Kazman", subtitle: "Fourth edition · SEI Series in Software Engineering", color: "#5b4a8b" },
+  { title: "Clean Architecture", author: "Robert C. Martin", subtitle: "A Craftsman's Guide to Software Structure and Design", cover: "/books/clean-architecture.jpg" },
+  { title: "Clean Code", author: "Robert C. Martin", subtitle: "A Handbook of Agile Software Craftsmanship", cover: "/books/clean-code.jpg" },
+  { title: "Dive Into Design Patterns", author: "Alexander Shvets", cover: "/books/design-patterns.jpg" },
 ];
 
 export const education = {

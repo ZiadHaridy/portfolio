@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { education, experience, howIWork, profile } from "@/content/profile";
+import { books, education, experience, howIWork, profile } from "@/content/profile";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 
@@ -171,6 +171,60 @@ function YouTubeCard() {
   );
 }
 
+function BookshelfCard() {
+  const [active, setActive] = useState(0);
+  const book = books[active];
+  const n = books.length;
+  return (
+    <Card className="flex flex-col p-5 pt-16">
+      <Tag>On my bookshelf</Tag>
+      <div className="relative mx-auto mt-2 h-[150px] w-full max-w-[300px]" onMouseLeave={() => setActive(0)}>
+        {books.map((b, i) => {
+          const offset = i - (n - 1) / 2;
+          const on = i === active;
+          return (
+            <button
+              key={b.title}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              onClick={() => setActive(i)}
+              aria-label={`${b.title} by ${b.author}`}
+              className="absolute left-1/2 top-2 w-[86px] origin-bottom transition-all duration-300 ease-out"
+              style={{
+                transform: `translateX(calc(-50% + ${offset * (n > 4 ? 46 : 58)}px)) translateY(${on ? -10 : Math.abs(offset) * 4}px) rotate(${on ? 0 : offset * 7}deg)`,
+                zIndex: on ? 20 : 10 - Math.abs(Math.round(offset * 2)),
+              }}
+            >
+              {b.cover ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={b.cover}
+                  alt=""
+                  loading="lazy"
+                  className={`aspect-[3/4.2] w-full rounded-[6px] object-cover ring-1 ring-black/10 transition-shadow duration-300 ${on ? "shadow-[0_18px_30px_-10px_rgba(0,0,0,0.45)]" : "shadow-[0_8px_18px_-10px_rgba(0,0,0,0.35)]"}`}
+                />
+              ) : (
+                <span
+                  className={`flex aspect-[3/4.2] w-full flex-col justify-between rounded-[6px] p-2 text-left text-white ring-1 ring-black/10 transition-shadow duration-300 ${on ? "shadow-[0_18px_30px_-10px_rgba(0,0,0,0.45)]" : "shadow-[0_8px_18px_-10px_rgba(0,0,0,0.35)]"}`}
+                  style={{ background: `linear-gradient(160deg, ${b.color ?? "#111110"}, #111110)` }}
+                >
+                  <span className="text-[10.5px] font-semibold leading-tight">{b.title}</span>
+                  <span className="font-mono text-[7px] leading-tight text-white/60">{b.author.split(",")[0]}</span>
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+      <div className="mt-4 min-h-[64px] text-center">
+        <div className="text-[14.5px] font-medium leading-snug">{book.title}</div>
+        <div className="mt-0.5 font-mono text-[11px] text-mute">{book.author}</div>
+        {book.subtitle && <div className="mx-auto mt-1 max-w-[260px] text-[12px] leading-snug text-ink-2/70">{book.subtitle}</div>}
+      </div>
+    </Card>
+  );
+}
+
 export function Bento() {
   return (
     <section id="about" className="px-5 py-20 sm:px-10 lg:px-14">
@@ -188,7 +242,8 @@ export function Bento() {
         <Reveal className="md:col-span-2" delay={0.1}><EducationCard /></Reveal>
         <Reveal className="md:col-span-2" delay={0.1}><AiCard /></Reveal>
         <Reveal className="md:col-span-2" delay={0.15}><YouTubeCard /></Reveal>
-        <Reveal className="md:col-span-6" delay={0.1}><HowIWorkCard /></Reveal>
+        <Reveal className="md:col-span-4" delay={0.1}><HowIWorkCard /></Reveal>
+        <Reveal className="md:col-span-2" delay={0.15}><BookshelfCard /></Reveal>
       </div>
     </section>
   );
