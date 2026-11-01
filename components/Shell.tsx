@@ -3,6 +3,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { CommandPalette } from "./CommandPalette";
 import { FloatingNav } from "./FloatingNav";
 import { LensProvider } from "./LensContext";
+import { MenuProvider } from "./MenuContext";
+import { MobileMenu } from "./MobileMenu";
 import { profile } from "@/content/profile";
 
 export function Shell({ children }: { children: ReactNode }) {
@@ -17,9 +19,12 @@ export function Shell({ children }: { children: ReactNode }) {
   }, []);
   return (
     <LensProvider>
-      <FloatingNav onOpenPalette={() => setPalette(true)} />
-      <CommandPalette open={palette} setOpen={setPalette} />
-      {children}
+      <MenuProvider>
+        <FloatingNav onOpenPalette={() => setPalette(true)} />
+        <MobileMenu />
+        <CommandPalette open={palette} setOpen={setPalette} />
+        {children}
+      </MenuProvider>
     </LensProvider>
   );
 }

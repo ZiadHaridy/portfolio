@@ -96,28 +96,6 @@ function EducationCard() {
   );
 }
 
-function AiCard() {
-  return (
-    <Card className="bg-night p-5 pt-16 text-white ring-white/5">
-      <span className="absolute left-5 top-5 z-10 rounded-full bg-white/10 px-3 py-1 text-[12px] font-medium text-white/90 ring-1 ring-white/10">My daily toolkit</span>
-      <div className="font-mono text-[12.5px] leading-relaxed text-white/70">
-        <div>
-          <span className="text-accent">$</span> claude <span className="text-white/40">--mcp --agents</span>
-        </div>
-        <div className="text-white/40">› drafting migration plan…</div>
-        <div className="text-white/40">› writing tests first…</div>
-        <div>
-          <span className="text-ok">✓</span> human review: <span className="text-white">required</span>
-        </div>
-        <div>
-          <span className="text-ok">✓</span> ship <span className="animate-blink">▍</span>
-        </div>
-      </div>
-      <p className="mt-4 text-[13.5px] leading-snug text-white/60">Claude Code, MCP and agent harnesses daily, to ship faster. Every change is reviewed by a human.</p>
-    </Card>
-  );
-}
-
 function HowIWorkCard() {
   const [i, setI] = useState(0);
   const step = howIWork[i];
@@ -142,32 +120,11 @@ function HowIWorkCard() {
             className={`relative flex-1 whitespace-nowrap rounded-full px-3 py-2 text-[12.5px] font-medium transition ${idx === i ? "text-card" : "text-ink-2 hover:text-ink"}`}
           >
             {idx === i && <motion.span layoutId="how-pill" className="absolute inset-0 rounded-full bg-ink" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />}
-            <span className="relative">Step {s.step}</span>
+            <span className="relative">{s.step}</span>
           </button>
         ))}
       </div>
     </Card>
-  );
-}
-
-function YouTubeCard() {
-  return (
-    <a href={profile.links.youtube} target="_blank" rel="noreferrer" className="group block h-full">
-      <Card className="flex flex-col p-5 pt-16 transition group-hover:-translate-y-0.5">
-        <Tag>I teach on YouTube</Tag>
-        <div className="relative flex flex-1 items-center justify-center rounded-2xl bg-ink p-5 text-card">
-          <div className="text-center font-mono">
-            <div className="text-[11px] uppercase tracking-[0.2em] text-white/50">walkthrough</div>
-            <div className="mt-1 text-2xl font-bold tracking-tight">
-              KO<span className="text-accent">-</span>DB
-            </div>
-            <div className="mt-1 text-[11px] text-white/50">a database from scratch in Go</div>
-          </div>
-          <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-accent text-white transition group-hover:scale-110">▶</span>
-        </div>
-        <div className="mt-3 text-[13px] text-mute">Storage engine · WAL · TCP · sharding ↗</div>
-      </Card>
-    </a>
   );
 }
 
@@ -240,10 +197,8 @@ export function Bento() {
         <Reveal className="md:col-span-2 md:row-span-2"><ExperienceCard /></Reveal>
         <Reveal className="md:col-span-2" delay={0.05}><MapCard /></Reveal>
         <Reveal className="md:col-span-2" delay={0.1}><EducationCard /></Reveal>
-        <Reveal className="md:col-span-2" delay={0.1}><AiCard /></Reveal>
-        <Reveal className="md:col-span-2" delay={0.15}><YouTubeCard /></Reveal>
-        <Reveal className="md:col-span-4" delay={0.1}><HowIWorkCard /></Reveal>
-        <Reveal className="md:col-span-2" delay={0.15}><BookshelfCard /></Reveal>
+        <Reveal className="md:col-span-2" delay={0.1}><BookshelfCard /></Reveal>
+        <Reveal className="md:col-span-2" delay={0.15}><HowIWorkCard /></Reveal>
       </div>
     </section>
   );

@@ -10,13 +10,15 @@ A portfolio for a senior software engineer: it shows the work running instead of
 | --- | --- |
 | **Hero** | Rotating headline, "Open to work", and a **live distributed-trace waterfall** (`GET /v1/engineers/ziad-ahmed`) |
 | **"Who's reading?" lens** | Recruiter / Engineer / Student buttons. Each one shows a tailored panel (30-sec summary + CV, systems-lab pointer, student corner), and the trace's `role=` changes with it |
-| **Benchmarks** | Count-up production metrics: 115×, −98%, −97%, ~$2K/yr, 153 APIs, +45% |
-| **About (bento)** | Experience timeline, live local time (Egypt), education, AI workflow, YouTube, "How I work" stepper |
+| **Benchmarks** | Partner-logo marquee of the companies Ziad has worked with, plus count-up production metrics: 115×, −98%, 140×, ~$2K/yr, 153 APIs, 804 → 1 |
+| **About (bento)** | Experience timeline, live local time (Egypt), education, a five-book bookshelf, "How I work" stepper |
 | **Systems Lab** | Interactive demos: **Deficit Round Robin vs FIFO call dispatcher** with **Redis/Lua leader election** (kill the leader), a **KO-DB shell** (SET/GET/DEL, CRASH → WAL replay, sharding), and **performance replays** (COLLSCAN vs IXSCAN race, buffered vs re-architected export memory) |
-| **Selected work** | Accordion case studies with animated architecture sketches |
-| **Postmortems** | Status-page style incident history (region evacuation, leaked key, RDS outage…) |
-| **Stack / Student corner / FAQ / Contact** | Filterable skills, a backend roadmap, recruiter FAQ, Email / WhatsApp / LinkedIn |
-| **Extras** | `⌘K` command palette, floating nav, a real static API at **`/api/profile.json`**, a devtools console greeting, JSON-LD for SEO, an Open Graph share image (`public/og.png`), `prefers-reduced-motion` support |
+| **Selected work** | The four best systems only (healthcare AI, CRM on Spring Cloud, AI voice agent, KO-DB), as accordion case studies with architecture diagrams that use real tech logos |
+| **Achievements** | Every win in one place: 51 achievements, filterable by Performance, Reliability, Security, Cost & cloud, Built, Leadership and Awards & learning. Shows the top 9 first (6 on phones) |
+| **Postmortems** | Status-page style history of the four biggest incidents (region evacuation, leaked key, RDS outage…); the rest live in Achievements |
+| **Stack / Student corner / FAQ / Contact** | Filterable skills, a compact TA corner with a backend roadmap, a four-question recruiter FAQ, Email / WhatsApp / LinkedIn |
+| **Navigation** | Floating nav on desktop; on phones and tablets a **burger menu** opens a full-screen sheet with numbered sections, Email / CV and socials |
+| **Extras** | `⌘K` command palette, a real static API at **`/api/profile.json`**, a devtools console greeting, JSON-LD for SEO, an Open Graph share image (`public/og.png`), `prefers-reduced-motion` support |
 
 ## Run it
 
@@ -28,9 +30,9 @@ npm run build      # static site in ./out
 
 ## Edit the content
 
-Everything lives in **`content/profile.ts`**: copy, metrics, experience, projects, incidents, stack and FAQ. `/api/profile.json` is generated from the same file.
+Everything lives in **`content/profile.ts`**: copy, metrics, experience, projects, incidents, achievements, stack and FAQ. Set `featured: true` on a project or incident to show it in the main sections, and `top: true` on an achievement to pin it to the first screen. `/api/profile.json` is generated from the same file.
 
-- **Photo:** drop a square image at `public/ziad.jpg` and set `photo: "/ziad.jpg"` in `content/profile.ts`. Until then the hero shows a "ZA." monogram.
+- **Photo:** replace `public/ziad.jpg` (square). Set `photo: ""` in `content/profile.ts` to show the ZA monogram instead.
 - **CV:** replace `public/Ziad_Ahmed_CV.pdf`.
 - **Domain:** the site is set up for **https://ziad-dev.com** (`metadataBase` in `app/layout.tsx`, used for canonical and OG/Twitter cards).
 

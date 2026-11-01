@@ -8,22 +8,23 @@ import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 
 export function Work() {
-  const [open, setOpen] = useState<string | null>("01");
+  const [open, setOpen] = useState<string | null>(work.find((w) => "featured" in w && w.featured)?.id ?? null);
   return (
     <section id="work" className="slab bg-slab px-5 py-20 sm:px-10 sm:py-24 lg:px-14">
       <SectionLabel tilt={-4}>Selected work</SectionLabel>
       <Reveal className="mt-12">
-        <SectionHeading title="Systems I've shipped," muted="and what they did in production." />
+        <SectionHeading title="Four systems," muted="the best of what I've shipped." lead="The rest of the wins are in Achievements below." />
       </Reveal>
 
       <div className="mt-14 divide-y divide-line border-y border-line">
-        {work.map((w) => {
+        {work.filter((w) => "featured" in w && w.featured).map((w, idx) => {
+          const num = String(idx + 1).padStart(2, "0");
           const isOpen = open === w.id;
           return (
             <Reveal key={w.id}>
               <article className="py-7 sm:py-8">
                 <button onClick={() => setOpen(isOpen ? null : w.id)} className="group grid w-full grid-cols-[2.5rem_1fr_auto] items-start gap-4 text-left sm:grid-cols-[4rem_1.3fr_1fr_auto] sm:gap-6" aria-expanded={isOpen}>
-                  <span className="pt-1.5 font-mono text-[12px] text-mute">[{w.id}]</span>
+                  <span className="pt-1.5 font-mono text-[12px] text-mute">[{num}]</span>
                   <span>
                     <span className="block text-[clamp(1.25rem,2.4vw,1.75rem)] font-semibold leading-tight tracking-[-0.03em] transition group-hover:text-accent">{w.title}</span>
                     <span className="mt-1 block font-mono text-[12px] text-mute">

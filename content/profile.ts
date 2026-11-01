@@ -167,6 +167,7 @@ export const work = [
   {
     id: "01",
     title: "Healthcare AI transcription & CDI platform",
+    featured: true,
     company: "Nuxera",
     period: "",
     kicker: "Secure, measured, honest with data",
@@ -177,15 +178,12 @@ export const work = [
       { k: "Rebuild", v: "42s → 0.3s" },
     ],
     summary:
-      "Backend core of a medical transcription and clinical-documentation platform used by doctors, plus the web app, analytics dashboard, browser extension and desktop app around it. I made it faster, closed security holes, and stopped the product from showing fake numbers.",
+      "Backend core of a medical transcription and clinical-documentation platform used by doctors. I made it faster, closed its security holes, and stopped it from showing fake numbers.",
     bullets: [
-      "Audio pipeline: async ffmpeg and one probe per chunk instead of two, giving 3.7× throughput at 4 concurrent chunks and 74–118 ms less event-loop blocking per chunk",
-      "Chunk join: numerals match only number words of the same value, Egyptian Arabic spellings included, like تلاتة and تمانين. Rebuilding at the 120-chunk cap went from 42 s to 0.3 s of event-loop time, and log lines from ~7,300 to 238",
-      "Closed privilege escalation: org admins could grant themselves system_admin, revokes were never checked, DELETE /user/:id had no org scoping, suspended users' tokens kept working",
-      "Found every /api/speaker-verification/* endpoint unauthenticated, then reworked voice enrollment: no audio stored, fingerprint out of the audit log, voiceprint deletion confirmed before rows are removed",
-      "Hardening: global error handler (~35 catch blocks leaked Postgres/OpenAI errors), login timing oracle closed, a shared “[object Object]” rate-limit bucket fixed, a router-walking test that fails any route without auth, per-commit releases with automatic rollback, an 86-variable env schema",
-      "No fake data: one metric engine where every value is live | partial | proposed, so the UI says “not instrumented” instead of 0; confidence shows null, not “0.0%”",
-      "Clients: SDAIA/PDPL compliance screen and a safe “keep me signed in” in the browser extension, Arabic RTL chat, ONNX wake-word detection on desktop, and an Opus encoder fix for the 72 ms lost at every chunk join",
+      "Audio pipeline: async ffmpeg and one probe per chunk, for 3.7× throughput and 74–118 ms less event-loop blocking per chunk",
+      "Transcript rebuild at the 120-chunk cap: 42 s → 0.3 s of event-loop time, with Arabic-aware numeral matching",
+      "Security: closed four privilege-escalation paths and locked down unauthenticated voice-biometric endpoints",
+      "Honest analytics: every metric is live | partial | proposed, so the UI says “not instrumented” instead of a fake 0",
     ],
     integrations: ["PostgreSQL", "OpenAI", "ffmpeg", "Opus", "ONNX", "React Query"],
     stack: ["Node.js", "TypeScript", "PostgreSQL", "React", "ffmpeg", "ONNX"],
@@ -194,6 +192,7 @@ export const work = [
   {
     id: "02",
     title: "CRM platform on Spring Cloud & AWS",
+    featured: true,
     company: "Proven Solution",
     period: "",
     kicker: "Built the pipeline, then made it fast",
@@ -204,15 +203,12 @@ export const work = [
       { k: "AWS spend", v: "−$150/mo" },
     ],
     summary:
-      "Owned AWS, DevOps and performance for a CRM built on Spring Cloud: CI/CD from scratch, reliable deploys, outage response, and fixes for the queries and threads that kept stalling the platform.",
+      "Owned AWS, DevOps and performance for a CRM built on Spring Cloud: CI/CD from scratch, reliable deploys, outage response, and the query fixes that stopped the platform stalling.",
     bullets: [
-      "Built CI/CD from scratch: 7 GitHub Actions pipelines deploy the Spring Cloud services (Eureka, API gateway, notification service, main backend), the React CRM and the landing page with Docker to EC2: UAT in Mumbai, prod in N. Virginia behind an ALB and CloudFront, invalidated on every deploy",
-      "Made deploys trustworthy: a green pipeline had left a 4-hour-old image running 3 migrations behind. Every deploy now ships a commit-tagged image and a boot check that reports the Flyway version. Also added image cleanup and stopped deploys restarting Eureka under the other services",
-      "Faster builds: GitHub Actions layer caching plus a separate dependency layer, so a code-only change no longer re-downloads every Maven jar (including the 56 MB Microsoft Graph SDK)",
-      "Platform stalls: each project save ran ~1,600 redundant queries and 10,000 log lines over 8+ minutes and starved the shared async pool. Now it's one project load per save instead of 804",
-      "Outlook sync: two threads at 95%+ CPU for 50+ minutes. Fixed with server-side filtering by Microsoft, a fixed date window with a page cap, and a dedicated thread pool. Removed N+1 queries that stalled businesses with 20k+ customers, and added JDBC timeouts and TCP keepalive",
-      "Bulk lead transfer (50 leads took ~90 s): batched database writes, with emails and notifications sent after the commit. Project search: no more duplicate media lists, and indexes on the filtered columns",
-      "Security & config: closed an S3 hole that let any logged-in user delete any object, fixed prod reading the dev database (hardcoded Spring profile), and wrote the deployment & operations runbook",
+      "CI/CD from scratch: 7 GitHub Actions pipelines deploying the Spring Cloud services and React CRM to EC2 in two AWS regions",
+      "Trustworthy deploys: commit-tagged images plus a boot check that reports the Flyway version",
+      "One project load per save instead of 804, removing ~1,600 redundant queries that kept stalling the platform",
+      "Led the response to a production outage and cut AWS spend by about $150/month",
     ],
     integrations: ["GitHub Actions", "Docker", "EC2", "ALB", "CloudFront", "RDS MySQL", "S3", "CloudTrail", "Microsoft Graph", "Flyway"],
     stack: ["Java", "Spring Boot", "Spring Cloud", "MySQL", "React", "Docker", "AWS"],
@@ -221,6 +217,7 @@ export const work = [
   {
     id: "03",
     title: "AI voice-agent calling platform",
+    featured: true,
     company: "Solid Ground Solutions · US",
     period: "2025 – 2026",
     kicker: "Solo backend, end to end",
@@ -233,12 +230,10 @@ export const work = [
     summary:
       "Built the entire backend of an outbound AI-calling SaaS, covering campaigns, billing, real-time call monitoring, scheduling, AWS cost & security, and containerized deployment.",
     bullets: [
-      "Redis-backed Deficit Round Robin dispatcher with atomic Lua-script leader election and per-user capacity limits: fair call scheduling across multi-worker clusters",
-      "Billing end to end: real-time credit deduction, Stripe auto-recharge, auto-pausing campaigns on low balance, OTP signup, Checkout webhooks, automated Twilio subaccount provisioning",
-      "Workflow engine from scratch on cron scheduling + a DB thread pool, event-driven messaging on SQS/SNS, transactional email through SES",
-      "AI post-call pipeline turning transcripts into CRM data: voicemail detection, appointments, interest, lead names",
-      "Multi-agent “Squads” routing (AI-to-AI transfer chains), self-serve voice cloning with S3 uploads, fraud detection",
-      "Refactored a 577-line service into Clean Architecture and wrote the engineering playbook adopted across the codebase",
+      "Redis Deficit Round Robin dispatcher with atomic Lua leader election and per-user capacity limits",
+      "Billing end to end with Stripe: real-time credit deduction, auto-recharge, auto-pausing campaigns",
+      "Workflow engine from scratch on cron + SQS/SNS, and an AI pipeline that turns call transcripts into CRM data",
+      "Refactored to Clean Architecture and wrote the engineering playbook the team adopted",
     ],
     integrations: ["Twilio", "Telnyx", "Stripe", "Facebook Lead Ads", "Mailchimp", "Outlook", "Google Calendar", "BigQuery"],
     stack: ["Node.js", "TypeScript", "Redis", "MongoDB", "PostgreSQL", "AWS", "Docker", "Next.js"],
@@ -319,6 +314,7 @@ export const work = [
   {
     id: "07",
     title: "KO-DB: a key-value database from scratch",
+    featured: true,
     company: "Open source · Go",
     period: "Side project",
     kicker: "Systems fundamentals",
@@ -349,6 +345,7 @@ export const work = [
 export const incidents = [
   {
     id: "INC-0470",
+    featured: true,
     sev: "SEV-1",
     title: "API-wide 500s: memory-starved RDS MySQL",
     org: "Proven Solution",
@@ -359,6 +356,7 @@ export const incidents = [
   },
   {
     id: "INC-0461",
+    featured: true,
     sev: "SEV-1",
     title: "Privilege escalation in role ranking",
     org: "Nuxera",
@@ -419,6 +417,7 @@ export const incidents = [
   },
   {
     id: "INC-0412",
+    featured: true,
     sev: "SEV-1",
     title: "Region evacuation: Bahrain → Mumbai",
     org: "Nugttah",
@@ -429,6 +428,7 @@ export const incidents = [
   },
   {
     id: "INC-0388",
+    featured: true,
     sev: "SEV-1",
     title: "Leaked AWS access key",
     org: "Solid Ground",
@@ -517,28 +517,12 @@ export const faqs = [
     a: "Yes. From Jan 2025 to Apr 2026 I worked as a remote contractor for a US company, solo-building the backend of their voice-AI platform.",
   },
   {
-    q: "Do you work with Java and Spring Boot?",
-    a: "Yes. At Proven Solution I ran Spring Cloud services (Eureka, API gateway, notification service, main backend) in production: CI/CD, deploy reliability, performance fixes and AWS operations.",
-  },
-  {
     q: "Are you backend-only?",
     a: "Backend is home, but I ship frontends too: React and Next.js on the web and React Native on mobile. The voice-AI platform ran a Next.js frontend on top of my APIs.",
   },
   {
-    q: "How do you use AI in your workflow?",
-    a: "I use Claude Code, MCP and agent harnesses every day to ship faster. Every AI-assisted change gets human review and tests before it reaches production.",
-  },
-  {
-    q: "Have you worked on sensitive or regulated data?",
-    a: "Yes, in healthcare AI. I kept patient data out of support tickets and logs, kept voice fingerprints out of audit logs, built a SDAIA/PDPL compliance screen, and closed authentication and privilege-escalation holes.",
-  },
-  {
     q: "Have you led or mentored engineers?",
     a: "I'm a Senior Team Lead Software Engineer at Proven Solution. Before that I led the engineering interview process at Botit, wrote the engineering playbook adopted at Solid Ground, wrote the deployment & operations runbook at Proven Solution, and teach Software Component Design and Software Architecture as a TA at AASTMT.",
-  },
-  {
-    q: "What's your strongest technical area?",
-    a: "Data-heavy backends: query optimization on MongoDB and PostgreSQL, queue-based architectures (BullMQ, SQS/SNS), and distributed scheduling on Redis.",
   },
 ];
 
@@ -556,6 +540,73 @@ export const books: { title: string; author: string; subtitle?: string; cover?: 
   { title: "Clean Architecture", author: "Robert C. Martin", subtitle: "A Craftsman's Guide to Software Structure and Design", cover: "/books/clean-architecture.jpg" },
   { title: "Clean Code", author: "Robert C. Martin", subtitle: "A Handbook of Agile Software Craftsmanship", cover: "/books/clean-code.jpg" },
   { title: "Dive Into Design Patterns", author: "Alexander Shvets", cover: "/books/design-patterns.jpg" },
+];
+
+export type AchievementCat = "performance" | "reliability" | "security" | "cloud" | "builds" | "leadership" | "awards";
+
+export const achievementCats: { id: AchievementCat; label: string }[] = [
+  { id: "performance", label: "Performance" },
+  { id: "reliability", label: "Reliability" },
+  { id: "security", label: "Security" },
+  { id: "cloud", label: "Cost & cloud" },
+  { id: "builds", label: "Built" },
+  { id: "leadership", label: "Leadership" },
+  { id: "awards", label: "Awards & learning" },
+];
+
+// Every achievement in one place. The rest of the page shows only the highlights.
+export const achievements: { cat: AchievementCat; value: string; text: string; org: string; top?: boolean }[] = [
+  { cat: "performance", value: "115×", text: "faster Order List API by restoring MongoDB index use, with zero schema changes", org: "Nugttah", top: true },
+  { cat: "performance", value: "140×", text: "faster transcript rebuild: 42 s → 0.3 s of event-loop time at the 120-chunk cap", org: "Nuxera", top: true },
+  { cat: "performance", value: "3.7×", text: "audio pipeline throughput from async ffmpeg and one probe per chunk", org: "Nuxera" },
+  { cat: "performance", value: "−98%", text: "memory on a 100,000+ record export pipeline, with no more timeouts", org: "Nugttah" },
+  { cat: "performance", value: "−97%", text: "server startup time: async processing, no queue blocking, lost-message handling", org: "Nugttah" },
+  { cat: "performance", value: "804 → 1", text: "project loads per save, removing ~1,600 redundant queries and 10K log lines", org: "Proven Solution", top: true },
+  { cat: "performance", value: "95% CPU", text: "runaway Outlook sync tamed: server-side filtering, date window, own thread pool", org: "Proven Solution" },
+  { cat: "performance", value: "20k+", text: "customer businesses freed from multi-minute stalls by fixing N+1 queries", org: "Proven Solution" },
+  { cat: "performance", value: "+30–42%", text: "faster queries on the e-commerce platform", org: "Botit" },
+  { cat: "performance", value: "56 MB", text: "dependency re-downloads skipped per build with Docker layer caching", org: "Proven Solution" },
+  { cat: "reliability", value: "0 lost", text: "data in an emergency Bahrain → Mumbai infrastructure migration", org: "Nugttah", top: true },
+  { cat: "reliability", value: "SEV-1", text: "API-wide outage resolved: memory-starved RDS MySQL traced via CloudTrail and resized", org: "Proven Solution" },
+  { cat: "reliability", value: "SEV-2", text: "production RDS outage from leaking stale connections fixed, RDS scaled out", org: "Solid Ground" },
+  { cat: "reliability", value: "Flyway", text: "boot check + commit-tagged images so green pipelines can't ship stale code", org: "Proven Solution" },
+  { cat: "reliability", value: "Rollback", text: "per-commit releases with automatic rollback", org: "Nuxera" },
+  { cat: "reliability", value: "Race", text: "MongoDB replication race conditions resolved with primary–secondary sync", org: "Nugttah" },
+  { cat: "reliability", value: "24% slower", text: "parallel CI tests on 2-core runners: measured, then reverted. Measure before optimizing", org: "Proven Solution" },
+  { cat: "security", value: "4 paths", text: "of privilege escalation closed in role ranking", org: "Nuxera", top: true },
+  { cat: "security", value: "Biometrics", text: "unauthenticated voice-verification endpoints locked down; no audio stored", org: "Nuxera" },
+  { cat: "security", value: "35 leaks", text: "of Postgres/OpenAI error text to clients stopped with a global error handler", org: "Nuxera" },
+  { cat: "security", value: "Auth test", text: "that walks the router and fails on any route without auth", org: "Nuxera" },
+  { cat: "security", value: "Timing", text: "oracle on login closed, so it no longer reveals which emails exist", org: "Nuxera" },
+  { cat: "security", value: "S3", text: "hole closed that let any logged-in user delete any object", org: "Proven Solution" },
+  { cat: "security", value: "Prod ≠ dev", text: "fixed production reading the dev database (hardcoded Spring profile)", org: "Proven Solution" },
+  { cat: "security", value: "IAM", text: "leaked AWS key revoked; shared credentials replaced with least-privilege users", org: "Solid Ground" },
+  { cat: "security", value: "Cloudflare", text: "incident handled by moving users to internal infrastructure", org: "Nugttah" },
+  { cat: "cloud", value: "~$2K/yr", text: "cut from AWS: RDS upgrade, idle EC2s, unused Elastic IPs", org: "Solid Ground", top: true },
+  { cat: "cloud", value: "$150/mo", text: "saved by moving UAT RDS off MySQL 8.0 Extended Support, plus $80+/mo more found", org: "Proven Solution" },
+  { cat: "cloud", value: "7", text: "CI/CD pipelines built from scratch across two AWS regions", org: "Proven Solution" },
+  { cat: "cloud", value: "+45%", text: "faster deployments on GitHub Actions", org: "Botit" },
+  { cat: "cloud", value: "Docker", text: "containerized the full backend and frontend", org: "Solid Ground" },
+  { cat: "builds", value: "153", text: "REST APIs solo-built: ~85K lines of TypeScript, 629 commits in 9 months", org: "Solid Ground", top: true },
+  { cat: "builds", value: "DRR", text: "fair call dispatcher with Redis + Lua leader election", org: "Solid Ground" },
+  { cat: "builds", value: "Stripe", text: "billing end to end: credits, auto-recharge, auto-pause, Twilio provisioning", org: "Solid Ground" },
+  { cat: "builds", value: "300", text: "commits across 7 repos of a healthcare AI platform", org: "Nuxera" },
+  { cat: "builds", value: "Truth", text: "metric engine where every value is live | partial | proposed, never a fake 0", org: "Nuxera" },
+  { cat: "builds", value: "KO-DB", text: "a key-value database from scratch in Go: WAL, TCP layer, sharding", org: "Open source" },
+  { cat: "builds", value: "Customs", text: "clearance system for a large Alexandria company (freelance)", org: "Sonbola" },
+  { cat: "builds", value: "Shopify", text: "real-time integrations and an APNs/Firebase notification service", org: "Botit" },
+  { cat: "builds", value: "Retool → own", text: "replaced Retool with a custom internal dashboard", org: "Botit" },
+  { cat: "leadership", value: "Team lead", text: "Senior Team Lead Software Engineer", org: "Proven Solution", top: true },
+  { cat: "leadership", value: "Hiring", text: "led the engineering interview process", org: "Botit" },
+  { cat: "leadership", value: "Playbook", text: "wrote the engineering playbook adopted across the codebase", org: "Solid Ground" },
+  { cat: "leadership", value: "Runbook", text: "wrote the deployment & operations runbook", org: "Proven Solution" },
+  { cat: "leadership", value: "TA", text: "teaching Software Component Design and Software Architecture", org: "AASTMT" },
+  { cat: "leadership", value: "YouTube", text: "explains database internals with the KO-DB walkthrough", org: "YouTube" },
+  { cat: "awards", value: "1st place", text: "IEEE AI 101 contest with the project “Gython” (2022)", org: "IEEE AAST", top: true },
+  { cat: "awards", value: "IEEE", text: "volunteer on the Technical Committee", org: "IEEE AAST" },
+  { cat: "awards", value: "#3", text: "in cohort: B.Sc. Computer Science, GPA 3.72, Excellent with Honor", org: "AASTMT" },
+  { cat: "awards", value: "Udemy", text: "Ultimate Design Patterns certificate (2026)", org: "Udemy" },
+  { cat: "awards", value: "Udemy", text: "The Complete Web Development Bootcamp certificate (2023)", org: "Udemy" },
 ];
 
 export const education = {

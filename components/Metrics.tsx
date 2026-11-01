@@ -1,6 +1,5 @@
-import { metrics, techMarquee } from "@/content/profile";
+import { metrics } from "@/content/profile";
 import { LogoMarquee } from "./LogoMarquee";
-import { TechChip } from "./ui/TechChip";
 import { Counter } from "./ui/Counter";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
@@ -40,14 +39,6 @@ export function Metrics() {
         ))}
       </div>
 
-      {/* tech marquee */}
-      <div className="relative mt-16 overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" aria-label="Technologies">
-        <div className="flex w-max animate-marquee-reverse gap-3 hover:[animation-play-state:paused]">
-          {[...techMarquee, ...techMarquee].map((t, i) => (
-            <TechChip key={i} label={t} className="bg-slab px-4 py-2 font-mono text-[13px] text-ink-2 ring-1 ring-black/[0.04]" />
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

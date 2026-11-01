@@ -6,6 +6,7 @@ import { CopyButton } from "./ui/CopyButton";
 import { TraceCard } from "./TraceCard";
 import { useLens } from "./LensContext";
 import { Logo } from "./ui/Logo";
+import { BurgerButton } from "./MenuContext";
 
 function Avatar({ size = 64 }: { size?: number }) {
   const [failed, setFailed] = useState(false);
@@ -165,15 +166,16 @@ export function Hero() {
           <a href="#top" className="mr-1 text-ink transition hover:opacity-80" aria-label="Home">
             <Logo className="h-6 w-auto" />
           </a>
-          <a href={`mailto:${profile.email}`} className="hidden text-[13px] text-ink-2 underline decoration-line underline-offset-4 hover:decoration-accent md:inline">
+          <a href={`mailto:${profile.email}`} className="hidden text-[13px] text-ink-2 underline decoration-line underline-offset-4 hover:decoration-accent lg:inline">
             {profile.email.toLowerCase()}
           </a>
-          <CopyButton value={profile.email} label="Copy email" />
-          <a href={profile.cv} download className="rounded-full bg-card px-4 py-2 text-xs font-medium ring-1 ring-black/5 card-shadow transition hover:-translate-y-px">
+          <CopyButton value={profile.email} label="Copy email" className="hidden sm:inline-block" />
+          <a href={profile.cv} download className="hidden rounded-full bg-card px-4 py-2 text-xs font-medium ring-1 ring-black/5 card-shadow transition hover:-translate-y-px sm:inline-block">
             CV ↓
           </a>
         </div>
-        <nav className="flex items-center gap-1 text-[13px] text-ink-2">
+        <BurgerButton className="lg:hidden" />
+        <nav className="hidden items-center gap-1 text-[13px] text-ink-2 lg:flex">
           <a className="rounded-full px-2.5 py-1 hover:text-accent" href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
           <span className="text-line">/</span>
           <a className="rounded-full px-2.5 py-1 hover:text-accent" href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>

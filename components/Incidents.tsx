@@ -15,13 +15,12 @@ const sevStyle: Record<string, string> = {
 const BARS = Array.from({ length: 64 }, (_, i) => ([9, 22, 31, 40, 47, 58].includes(i) ? (i % 2 ? "inc" : "minor") : "ok"));
 
 const SEV_ORDER: Record<string, number> = { "SEV-1": 0, "SEV-2": 1, "SEV-3": 2 };
-const sorted = [...incidents].sort((a, b) => SEV_ORDER[a.sev] - SEV_ORDER[b.sev]);
-const INITIAL = 8;
+// only the four flagship incidents here; the rest live in Achievements
+const sorted = incidents.filter((i) => "featured" in i && i.featured).sort((a, b) => SEV_ORDER[a.sev] - SEV_ORDER[b.sev]);
 
 export function Incidents() {
   const [open, setOpen] = useState<string | null>(sorted[0].id);
-  const [showAll, setShowAll] = useState(false);
-  const list = showAll ? sorted : sorted.slice(0, INITIAL);
+  const list = sorted;
   return (
     <section id="incidents" className="px-5 py-20 sm:px-10 sm:py-24 lg:px-14">
       <SectionLabel tilt={5}>Postmortems</SectionLabel>
@@ -29,7 +28,7 @@ export function Incidents() {
         <SectionHeading
           title="The 3am stories."
           muted="Real incidents, handled."
-          lead="Anyone can build the happy path. Here's what I did when production caught fire, written as blameless postmortems."
+          lead="Anyone can build the happy path. Four times production caught fire, and what I did, written as blameless postmortems."
         />
       </Reveal>
 
@@ -101,13 +100,11 @@ export function Incidents() {
             );
           })}
         </ul>
-        {sorted.length > INITIAL && (
-          <div className="mt-4 text-center">
-            <button onClick={() => setShowAll((v) => !v)} className="rounded-full bg-card px-5 py-2.5 font-mono text-[12px] text-ink-2 ring-1 ring-black/10 transition hover:text-ink">
-              {showAll ? "Show fewer" : `Show ${sorted.length - INITIAL} more incidents`}
-            </button>
-          </div>
-        )}
+        <div className="mt-4 text-center">
+          <a href="#achievements" className="inline-block rounded-full bg-card px-5 py-2.5 font-mono text-[12px] text-ink-2 ring-1 ring-black/10 transition hover:text-ink">
+            {incidents.length - sorted.length} more reliability &amp; security wins in Achievements ↓
+          </a>
+        </div>
       </Reveal>
     </section>
   );
