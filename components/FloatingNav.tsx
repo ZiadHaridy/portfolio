@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
+import { Logo } from "./ui/Logo";
 
 const links = [
   ["Impact", "#impact"],
@@ -25,8 +26,8 @@ export function FloatingNav({ onOpenPalette }: { onOpenPalette: () => void }) {
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
           className="fixed inset-x-0 top-3 z-50 mx-auto flex w-fit max-w-[calc(100%-1.5rem)] items-center gap-1 rounded-full bg-ink/90 p-1.5 pl-4 text-[13px] text-white/75 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] backdrop-blur-md"
         >
-          <a href="#top" className="mr-2 font-mono font-bold text-white">
-            ZA<span className="text-accent">.</span>
+          <a href="#top" className="mr-2 text-white" aria-label="Home">
+            <Logo className="h-4 w-auto" />
           </a>
           <div className="no-scrollbar hidden items-center gap-0.5 overflow-x-auto md:flex">
             {links.map(([l, h]) => (

@@ -53,6 +53,18 @@ Every push to `main` redeploys.
 - **Vercel:** import the repo (no config). If the domain stays on Cloudflare DNS, add the records Vercel shows with the proxy **off** (grey cloud).
 - **Netlify:** build `npm run build`, publish `out`.
 
+## Brand: ZA signature
+
+`public/brand/` holds the ZA monogram, Ziad's mark and digital signature:
+
+- `za-mark.svg` / `za-mark-white.svg`: full colour on light / dark
+- `za-mark-mono-black.svg` / `za-mark-mono-white.svg`: single colour (stamps, embossing, docs)
+- `za-lockup.svg` / `za-lockup-white.svg`: mark + name + role (email signature, CV header, slides)
+- `za-icon.svg`, `za-icon-512.png`: app icon / favicon; `za-avatar-1024.png`: profile picture
+- PNG exports at 1200px for places that don't take SVG
+
+Construction: the Z is three sheared blocks split by parallel slits; the A is a slanted leg cut against a straight stem; every diagonal shares one angle (1 : 2, about 26.6° from vertical). The orange `#ff5a1f` dot is the A's crossbar and the signature "period". Keep clear space equal to the dot's diameter × 2 around the mark; minimum size 16px tall (mark) / 24px tall (lockup). In code, use `components/ui/Logo.tsx`.
+
 ## Design
 
 The Figma file **portfolio** has matching foundations (color variables, Geist text styles, components) plus Desktop 1440 and Mobile 390 pages.

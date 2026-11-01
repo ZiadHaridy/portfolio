@@ -5,6 +5,7 @@ import { lenses, profile, type Lens } from "@/content/profile";
 import { CopyButton } from "./ui/CopyButton";
 import { TraceCard } from "./TraceCard";
 import { useLens } from "./LensContext";
+import { Logo } from "./ui/Logo";
 
 function Avatar({ size = 64 }: { size?: number }) {
   const [failed, setFailed] = useState(false);
@@ -161,8 +162,8 @@ export function Hero() {
       {/* top bar (ref: email · Copy · CV  …  socials) */}
       <div className="relative flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 sm:gap-3">
-          <a href="#top" className="mr-1 font-mono text-lg font-bold tracking-tight" aria-label="Home">
-            ZA<span className="text-accent">.</span>
+          <a href="#top" className="mr-1 text-ink transition hover:opacity-80" aria-label="Home">
+            <Logo className="h-6 w-auto" />
           </a>
           <a href={`mailto:${profile.email}`} className="hidden text-[13px] text-ink-2 underline decoration-line underline-offset-4 hover:decoration-accent md:inline">
             {profile.email.toLowerCase()}

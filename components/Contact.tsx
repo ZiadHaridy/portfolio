@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { profile } from "@/content/profile";
 import { CopyButton } from "./ui/CopyButton";
 import { Reveal } from "./ui/Reveal";
+import { Logo } from "./ui/Logo";
 
 function LoadTime() {
   const [ms, setMs] = useState<number | null>(null);
@@ -52,7 +53,9 @@ export function Contact() {
       </div>
 
       <footer className="relative mt-6 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 font-mono text-[11.5px] text-mute sm:flex-row">
-        <span>© {new Date().getFullYear()} {profile.name} · Built with Next.js</span>
+        <span className="flex items-center gap-2.5">
+          <Logo className="h-4 w-auto text-ink" />© {new Date().getFullYear()} {profile.name} · Built with Next.js
+        </span>
         <span className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-ok" /> page served in <LoadTime /> · status: operational
         </span>
