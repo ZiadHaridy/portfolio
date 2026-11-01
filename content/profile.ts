@@ -53,7 +53,7 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
       "Measurable wins: 115× faster API · 140× faster transcript rebuild · 98% less memory · ~$2K/yr AWS savings",
       "Security by reflex: closed privilege escalation, locked down biometric endpoints, kept patient data out of logs",
       "Calm in incidents: region evacuation with zero data loss, leaked-key response",
-      "Has led hiring interviews, written an engineering playbook and taught at university",
+      "Leads teams: Senior Team Lead at Proven Solution; also led hiring interviews, wrote an engineering playbook, and teaches at university",
     ],
     cta: { label: "Download CV", href: "/Ziad_Ahmed_CV.pdf" },
   },
@@ -105,19 +105,17 @@ export const techMarquee = [
 
 export const experience = [
   {
-    // TODO(Ziad): confirm your exact title and dates for this role.
-    role: "Backend & DevOps Engineer",
+    role: "Senior Team Lead Software Engineer",
     company: "Proven Solution",
-    period: "2026",
+    period: "",
     type: "AWS · DevOps · Performance",
     domain: "CRM platform on Spring Cloud",
     stack: ["Java", "Spring Boot", "Spring Cloud", "MySQL", "React", "Docker", "AWS"],
   },
   {
-    // TODO(Ziad): confirm your exact title and dates for this role.
-    role: "Backend Engineer",
+    role: "Senior Engineer",
     company: "Nuxera",
-    period: "Aug – Oct 2026",
+    period: "",
     type: "Healthcare AI",
     domain: "Medical transcription & clinical documentation (CDI) platform",
     stack: ["Node.js", "TypeScript", "PostgreSQL", "React", "ffmpeg", "ONNX"],
@@ -155,11 +153,10 @@ export const experience = [
     stack: ["Node.js", "MongoDB", "Shopify", "GitHub Actions"],
   },
   {
-    // TODO(Ziad): add your title and dates at Sonbola.
-    role: "Software Engineer",
+    role: "Freelance Software Engineer",
     company: "Sonbola (السنبلة)",
     period: "",
-    type: "Customs clearance · Alexandria",
+    type: "Freelance · Customs clearance · Alexandria",
     domain: "Customs & clearance operations system",
     stack: [],
   },
@@ -170,7 +167,7 @@ export const work = [
     id: "01",
     title: "Healthcare AI transcription & CDI platform",
     company: "Nuxera",
-    period: "2026",
+    period: "",
     kicker: "Secure, measured, honest with data",
     stats: [
       { k: "Commits", v: "300" },
@@ -197,7 +194,7 @@ export const work = [
     id: "02",
     title: "CRM platform on Spring Cloud & AWS",
     company: "Proven Solution",
-    period: "2026",
+    period: "",
     kicker: "Built the pipeline, then made it fast",
     stats: [
       { k: "CI/CD pipelines", v: "7" },
@@ -299,15 +296,15 @@ export const work = [
     id: "06",
     title: "Customs clearance operations system",
     company: "Sonbola (السنبلة) · Alexandria",
-    period: "",
-    kicker: "Real-world logistics, end to end",
+    period: "Freelance",
+    kicker: "Freelance · real-world logistics, end to end",
     stats: [
       { k: "Domain", v: "Customs clearance" },
       { k: "Port", v: "Alexandria" },
       { k: "Shipping lines", v: "CMA CGM · MSC · TARROS" },
     ],
     summary:
-      "The internal system for an Alexandria customs-clearance company: the clearance workflow for shipments from lines like CMA CGM, MSC and TARROS, plus the departments and staff around it.",
+      "A freelance build for a large customs-clearance company in Alexandria: the clearance workflow for shipments from lines like CMA CGM, MSC and TARROS, plus the departments and staff around it.",
     bullets: [
       "Customs & clearance: each shipment's clearance process, tied to its shipping line (CMA CGM, MSC, TARROS and others)",
       "Messages department: a dedicated module for the department that handles clearance messages",
@@ -536,7 +533,7 @@ export const faqs = [
   },
   {
     q: "Have you led or mentored engineers?",
-    a: "I led the engineering interview process at Botit, wrote the engineering playbook adopted at Solid Ground, wrote the deployment & operations runbook at Proven Solution, and teach Software Component Design and Software Architecture as a TA at AASTMT.",
+    a: "I'm a Senior Team Lead Software Engineer at Proven Solution. Before that I led the engineering interview process at Botit, wrote the engineering playbook adopted at Solid Ground, wrote the deployment & operations runbook at Proven Solution, and teach Software Component Design and Software Architecture as a TA at AASTMT.",
   },
   {
     q: "What's your strongest technical area?",
@@ -546,8 +543,7 @@ export const faqs = [
 
 export const credentials: { kind: "award" | "community" | "course"; title: string; issuer: string; date: string; detail: string; url?: string }[] = [
   { kind: "award", title: "1st place, AI 101 contest", issuer: "IEEE AAST Alexandria Student Branch", date: "Nov – Dec 2022", detail: "Won with the project “Gython”" },
-  // TODO(Ziad): add your IEEE role (committee / position) and years.
-  { kind: "community", title: "IEEE volunteer", issuer: "IEEE AAST Alexandria Student Branch", date: "", detail: "Volunteering with the student branch" },
+  { kind: "community", title: "IEEE volunteer, Technical Committee", issuer: "IEEE AAST Alexandria Student Branch", date: "", detail: "Technical committee volunteer" },
   { kind: "course", title: "Ultimate Design Patterns", issuer: "Udemy · Mahmoud Youssef", date: "Jan 2026", detail: "11 hours", url: "https://ude.my/UC-60ae1887-7bdd-45f8-98cd-87b239dbcb9e" },
   { kind: "course", title: "The Complete 2023 Web Development Bootcamp", issuer: "Udemy · Dr. Angela Yu", date: "Aug 2023", detail: "66 hours", url: "https://ude.my/UC-abbf2837-8fd2-4f22-9e7d-1bc71c2272a4" },
 ];
