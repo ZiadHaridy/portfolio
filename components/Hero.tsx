@@ -193,7 +193,7 @@ export function Hero() {
             </span>
             {profile.name}.
           </span>
-          <span className="mt-1 block text-mute">I build backends that</span>
+          <span className="mt-1 block text-mute">I build systems that</span>
           <RotatingWord />
         </motion.h1>
       </div>
@@ -202,7 +202,7 @@ export function Hero() {
         <div className="space-y-8">
           <motion.div {...fade(0.2)} className="flex flex-wrap items-center gap-3">
             <OpenToWork />
-            <span className="rounded-full bg-card px-3.5 py-1.5 font-mono text-[12px] text-ink-2 ring-1 ring-black/5">Senior Backend Engineer · 5+ yrs</span>
+            <span className="rounded-full bg-card px-3.5 py-1.5 font-mono text-[12px] text-ink-2 ring-1 ring-black/5">{profile.role} · 5+ yrs</span>
           </motion.div>
           <motion.div {...fade(0.3)} className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <a

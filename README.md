@@ -1,6 +1,6 @@
 # Ziad Ahmed — Portfolio
 
-A portfolio for a senior backend engineer: it shows the work running instead of just describing it.
+A portfolio for a senior software engineer: it shows the work running instead of just describing it.
 
 **Stack:** Next.js 16 (App Router, static export) · React 19 · TypeScript · Tailwind CSS v4 · Motion · Geist / Geist Mono
 

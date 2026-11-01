@@ -1,4 +1,4 @@
-// A real (static) API endpoint, because this is a backend engineer's portfolio.
+// A real (static) API endpoint, because this is a software engineer's portfolio.
 // curl https://ziad-dev.com/api/profile.json
 import { profile, metrics, experience, work, stack, education } from "@/content/profile";
 

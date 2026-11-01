@@ -37,7 +37,7 @@ function ExperienceCard() {
               {e.role} <span className="text-mute">at</span> {e.company}
             </div>
             <div className="mt-0.5 font-mono text-[11.5px] text-mute">
-              {e.period} · {e.type}
+              {[e.period, e.type].filter(Boolean).join(" · ")}
             </div>
           </li>
         ))}

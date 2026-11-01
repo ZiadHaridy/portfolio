@@ -28,7 +28,7 @@ export function Contact() {
           Tell me about <span className="text-mute">your next</span> system.
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-ink-2/75">
-          Hiring for a senior backend role, need a platform rescued, or just want to talk databases? My inbox is open.
+          Hiring for a senior engineering role, need a platform rescued, or just want to talk databases? My inbox is open.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-[16px] font-medium text-card transition hover:bg-accent">

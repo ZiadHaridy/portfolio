@@ -26,7 +26,7 @@ export function Work() {
                   <span>
                     <span className="block text-[clamp(1.25rem,2.4vw,1.75rem)] font-semibold leading-tight tracking-[-0.03em] transition group-hover:text-accent">{w.title}</span>
                     <span className="mt-1 block font-mono text-[12px] text-mute">
-                      {w.company} · {w.period}
+                      {[w.company, w.period].filter(Boolean).join(" · ")}
                     </span>
                   </span>
                   <span className="hidden flex-wrap gap-1.5 pt-1 sm:flex">

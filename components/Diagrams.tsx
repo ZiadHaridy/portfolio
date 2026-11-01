@@ -39,6 +39,22 @@ function Diagram({ boxes, edges, label }: { boxes: Box[]; edges: Edge[]; label: 
 
 export function ProjectDiagram({ kind }: { kind: string }) {
   switch (kind) {
+    case "customs":
+      return (
+        <Diagram
+          label="Customs clearance system: shipments from shipping lines flow through the clearance workflow, connected to the messages department, custodies and staff navigation"
+          boxes={[
+            { x: 8, y: 20, label: "CMA CGM" },
+            { x: 118, y: 20, label: "MSC" },
+            { x: 228, y: 20, label: "TARROS" },
+            { x: 118, y: 72, label: "clearance flow", accent: true },
+            { x: 8, y: 124, label: "messages dept" },
+            { x: 118, y: 124, label: "custodies" },
+            { x: 228, y: 124, label: "staff navigation" },
+          ]}
+          edges={[[0, 3], [1, 3], [2, 3], [3, 4], [3, 5], [3, 6]]}
+        />
+      );
     case "crm":
       return (
         <Diagram

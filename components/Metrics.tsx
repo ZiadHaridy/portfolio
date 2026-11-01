@@ -1,4 +1,5 @@
-import { companies, metrics, techMarquee } from "@/content/profile";
+import { metrics, techMarquee } from "@/content/profile";
+import { LogoMarquee } from "./LogoMarquee";
 import { Counter } from "./ui/Counter";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
@@ -6,16 +7,9 @@ import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 export function Metrics() {
   return (
     <section id="impact" className="slab relative overflow-hidden bg-card px-5 py-16 sm:px-10 sm:py-20 lg:px-14">
-      {/* companies strip */}
+      {/* companies "partners" marquee */}
       <Reveal>
-        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-8 md:grid-cols-5">
-          {companies.map((c) => (
-            <div key={c.name} className="text-center">
-              <div className="text-[clamp(1.05rem,2vw,1.45rem)] font-semibold tracking-[-0.03em] text-ink/85">{c.name}</div>
-              <div className="mt-1 font-mono text-[11px] uppercase tracking-wider text-mute">{c.tag}</div>
-            </div>
-          ))}
-        </div>
+        <LogoMarquee />
       </Reveal>
 
       <div className="mt-16">
@@ -47,7 +41,7 @@ export function Metrics() {
 
       {/* tech marquee */}
       <div className="relative mt-16 overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" aria-label="Technologies">
-        <div className="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marquee-reverse gap-3 hover:[animation-play-state:paused]">
           {[...techMarquee, ...techMarquee].map((t, i) => (
             <span key={i} className="whitespace-nowrap rounded-full bg-slab px-4 py-2 font-mono text-[13px] text-ink-2 ring-1 ring-black/[0.04]">
               {t}

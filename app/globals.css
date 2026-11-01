@@ -21,12 +21,18 @@
   --radius-slab: 2.75rem;
 
   --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 55s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 45s linear infinite;
   --animate-blink: blink 1s steps(2, start) infinite;
   --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
   }
   @keyframes blink {
     to { visibility: hidden; }

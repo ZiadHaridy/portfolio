@@ -1,5 +1,6 @@
 import { Bento } from "@/components/Bento";
 import { Contact } from "@/components/Contact";
+import { Credentials } from "@/components/Credentials";
 import { Faq } from "@/components/Faq";
 import { Hero } from "@/components/Hero";
 import { Incidents } from "@/components/Incidents";
@@ -22,6 +23,7 @@ export default function Page() {
         <Incidents />
         <Stack />
         <Students />
+        <Credentials />
         <Faq />
         <Contact />
       </main>

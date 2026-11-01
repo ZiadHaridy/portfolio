@@ -10,7 +10,7 @@ export function Students() {
         <SectionHeading
           title="Learning backend?"
           muted="Here's the path I'd take again."
-          lead="I taught Software Component Design, Java, data structures, OOP, APIs and SQL as a TA at AASTMT. This is the short version of what I tell my students."
+          lead="I teach Software Component Design and Software Architecture as a TA at AASTMT, on top of Java, data structures, OOP, APIs and SQL. This is the short version of what I tell my students."
         />
       </Reveal>
       <div className="mt-14 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">

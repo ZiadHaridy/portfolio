@@ -4,19 +4,19 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { profile } from "@/content/profile";
 
-const title = `${profile.name} | Senior Backend Engineer`;
+const title = `${profile.name} | ${profile.role}`;
 const description =
-  "Senior backend engineer (Node.js, Go, Java/Spring, PostgreSQL, MongoDB, Redis, AWS) who also ships React, Next.js and React Native. 115× faster APIs, 98% less memory, ~$2K/yr AWS savings. Interactive systems lab inside.";
+  "Senior software engineer: backend-heavy (Node.js, Go, Java/Spring, PostgreSQL, MongoDB, Redis, AWS) and full-stack with React, Next.js and React Native. 115× faster APIs, 98% less memory, ~$2K/yr AWS savings. Interactive systems lab inside.";
 
 export const metadata: Metadata = {
   title,
   description,
   metadataBase: new URL("https://ziad-dev.com"),
   alternates: { canonical: "/" },
-  openGraph: { title, description, type: "website", url: "https://ziad-dev.com", siteName: "Ziad Ahmed", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ziad Ahmed, Senior Backend Engineer" }] },
+  openGraph: { title, description, type: "website", url: "https://ziad-dev.com", siteName: "Ziad Ahmed", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ziad Ahmed, Senior Software Engineer" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   authors: [{ name: profile.name }],
-  keywords: ["Senior Backend Engineer", "Node.js", "Go", "Golang", "NestJS", "Spring Boot", "PostgreSQL", "MongoDB", "Redis", "AWS", "Next.js", "React Native", "Egypt"],
+  keywords: ["Senior Software Engineer", "Backend Engineer", "Full-stack Engineer", "Node.js", "Go", "Golang", "NestJS", "Spring Boot", "PostgreSQL", "MongoDB", "Redis", "AWS", "Next.js", "React Native", "Egypt"],
 };
 
 export const viewport: Viewport = {

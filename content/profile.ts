@@ -7,7 +7,7 @@ export const profile = {
   name: "Ziad Ahmed",
   firstName: "Ziad",
   initials: "ZA",
-  role: "Senior Backend Engineer",
+  role: "Senior Software Engineer",
   // Square photo at /public/ziad.jpg. If the file is missing, the hero falls back to the "ZA." monogram.
   photo: "/ziad.jpg" as string | null,
   location: "Egypt",
@@ -25,7 +25,7 @@ export const profile = {
   },
   rotatingWords: ["scale.", "stay up.", "cost less.", "go 115× faster.", "survive 3am."],
   summary:
-    "Senior backend engineer with 5+ years building and running scalable services in Node.js, TypeScript and Go on PostgreSQL, MongoDB and Redis, with queue-based architectures on BullMQ and AWS SQS/SNS. Recently ran Spring Cloud services on AWS (CI/CD, outages, performance) and hardened a healthcare-AI transcription platform. I also ship frontends in React, Next.js and React Native.",
+    "Senior software engineer with 5+ years building and running scalable services in Node.js, TypeScript and Go on PostgreSQL, MongoDB and Redis, with queue-based architectures on BullMQ and AWS SQS/SNS. Recently ran Spring Cloud services on AWS (CI/CD, outages, performance) and hardened a healthcare-AI transcription platform. I also ship frontends in React, Next.js and React Native.",
 };
 
 export type Metric = { value: number; prefix?: string; suffix: string; label: string; note: string; where: string; decimals?: number; display?: string };
@@ -46,7 +46,7 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
     label: "Recruiter",
     emoji: "🧑‍💼",
     title: "The 30-second version",
-    lead: "Senior backend engineer, 5+ years, open to work. Solo-built the backend of a US voice-AI SaaS end to end, and has the production numbers to show for it.",
+    lead: "Senior software engineer, 5+ years, backend-heavy and full-stack, open to work. Solo-built the backend of a US voice-AI SaaS end to end, and has the production numbers to show for it.",
     bullets: [
       "Owns systems end to end: APIs, billing, queues, AWS cost & security, deployment",
       "Ships and runs it: built CI/CD from scratch (7 pipelines, 2 AWS regions) and led outage response",
@@ -75,7 +75,7 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
     label: "Student",
     emoji: "🎓",
     title: "Hi! I was literally in your seat",
-    lead: "B.Sc. CS at AASTMT (GPA 3.72, ranked 3rd), then a teaching assistant there. I build things from scratch, like a database in Go, and explain them on YouTube.",
+    lead: "B.Sc. CS at AASTMT (GPA 3.72, ranked 3rd), now a teaching assistant there for Software Component Design and Software Architecture. I build things from scratch, like a database in Go, and explain them on YouTube.",
     bullets: [
       "Watch the KO-DB build: storage, WAL, TCP layer, sharding",
       "Play with the KO-DB terminal right here on the page",
@@ -86,13 +86,15 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
   },
 };
 
-export const companies = [
-  { name: "Proven Solution", tag: "CRM · Spring Cloud on AWS" },
+// logo: file in /public/logos. Without a logo the marquee shows a monogram.
+export const companies: { name: string; tag: string; logo?: string }[] = [
+  { name: "Proven Solution", tag: "CRM · Spring Cloud on AWS", logo: "/logos/proven.png" },
   { name: "Nuxera", tag: "Healthcare AI" },
   { name: "Solid Ground Solutions", tag: "US · Voice AI SaaS" },
-  { name: "Nugttah", tag: "Loyalty & F&B" },
-  { name: "Botit", tag: "E-commerce & delivery" },
-  { name: "AASTMT", tag: "Teaching" },
+  { name: "Nugttah", tag: "Loyalty & F&B", logo: "/logos/nugttah.png" },
+  { name: "Botit", tag: "E-commerce & delivery", logo: "/logos/botit.png" },
+  { name: "Sonbola · السنبلة", tag: "Customs clearance · Alexandria", logo: "/logos/sonbola.png" },
+  { name: "AASTMT", tag: "Teaching", logo: "/logos/aastmt.png" },
 ];
 
 export const techMarquee = [
@@ -142,7 +144,7 @@ export const experience = [
     period: "Feb 2026 – Jun 2026",
     type: "Part-time",
     domain: "Software Engineering Department",
-    stack: ["Java", "Data structures", "OOP", "APIs", "SQL"],
+    stack: ["Software Component Design", "Software Architecture", "Java", "OOP", "SQL"],
   },
   {
     role: "Backend Engineer (Mid-level)",
@@ -151,6 +153,15 @@ export const experience = [
     type: "Full-time",
     domain: "E-commerce / delivery platform",
     stack: ["Node.js", "MongoDB", "Shopify", "GitHub Actions"],
+  },
+  {
+    // TODO(Ziad): add your title and dates at Sonbola.
+    role: "Software Engineer",
+    company: "Sonbola (السنبلة)",
+    period: "",
+    type: "Customs clearance · Alexandria",
+    domain: "Customs & clearance operations system",
+    stack: [],
   },
 ];
 
@@ -286,6 +297,29 @@ export const work = [
   },
   {
     id: "06",
+    title: "Customs clearance operations system",
+    company: "Sonbola (السنبلة) · Alexandria",
+    period: "",
+    kicker: "Real-world logistics, end to end",
+    stats: [
+      { k: "Domain", v: "Customs clearance" },
+      { k: "Port", v: "Alexandria" },
+      { k: "Shipping lines", v: "CMA CGM · MSC · TARROS" },
+    ],
+    summary:
+      "The internal system for an Alexandria customs-clearance company: the clearance workflow for shipments from lines like CMA CGM, MSC and TARROS, plus the departments and staff around it.",
+    bullets: [
+      "Customs & clearance: each shipment's clearance process, tied to its shipping line (CMA CGM, MSC, TARROS and others)",
+      "Messages department: a dedicated module for the department that handles clearance messages",
+      "Custodies (عُهد): tracking the cash and items entrusted to employees so every custody is accounted for",
+      "Employee navigation: tracking where staff are sent across clearance jobs",
+    ],
+    integrations: [],
+    stack: [],
+    diagram: "customs",
+  },
+  {
+    id: "07",
     title: "KO-DB: a key-value database from scratch",
     company: "Open source · Go",
     period: "Side project",
@@ -478,7 +512,7 @@ export const roadmap = [
 export const faqs = [
   {
     q: "What roles are you looking for?",
-    a: "Senior backend or platform engineering roles where I own services end to end: API design, data modeling, queues, cloud cost and reliability.",
+    a: "Senior software engineering roles, backend-heavy or full-stack, where I own services end to end: API design, data modeling, queues, cloud cost and reliability.",
   },
   {
     q: "Have you worked remotely with international teams?",
@@ -502,12 +536,20 @@ export const faqs = [
   },
   {
     q: "Have you led or mentored engineers?",
-    a: "I led the engineering interview process at Botit, wrote the engineering playbook adopted at Solid Ground, wrote the deployment & operations runbook at Proven Solution, and taught software engineering as a TA at AASTMT.",
+    a: "I led the engineering interview process at Botit, wrote the engineering playbook adopted at Solid Ground, wrote the deployment & operations runbook at Proven Solution, and teach Software Component Design and Software Architecture as a TA at AASTMT.",
   },
   {
     q: "What's your strongest technical area?",
     a: "Data-heavy backends: query optimization on MongoDB and PostgreSQL, queue-based architectures (BullMQ, SQS/SNS), and distributed scheduling on Redis.",
   },
+];
+
+export const credentials: { kind: "award" | "community" | "course"; title: string; issuer: string; date: string; detail: string; url?: string }[] = [
+  { kind: "award", title: "1st place, AI 101 contest", issuer: "IEEE AAST Alexandria Student Branch", date: "Nov – Dec 2022", detail: "Won with the project “Gython”" },
+  // TODO(Ziad): add your IEEE role (committee / position) and years.
+  { kind: "community", title: "IEEE volunteer", issuer: "IEEE AAST Alexandria Student Branch", date: "", detail: "Volunteering with the student branch" },
+  { kind: "course", title: "Ultimate Design Patterns", issuer: "Udemy · Mahmoud Youssef", date: "Jan 2026", detail: "11 hours", url: "https://ude.my/UC-60ae1887-7bdd-45f8-98cd-87b239dbcb9e" },
+  { kind: "course", title: "The Complete 2023 Web Development Bootcamp", issuer: "Udemy · Dr. Angela Yu", date: "Aug 2023", detail: "66 hours", url: "https://ude.my/UC-abbf2837-8fd2-4f22-9e7d-1bc71c2272a4" },
 ];
 
 export const education = {
