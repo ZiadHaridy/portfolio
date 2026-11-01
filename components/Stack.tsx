@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { stack } from "@/content/profile";
+import { TechChip } from "./ui/TechChip";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 
@@ -34,9 +35,7 @@ export function Stack() {
             <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">{g.group}</div>
             <div className="mt-4 flex flex-wrap gap-1.5">
               {g.items.map((i) => (
-                <span key={i} className="rounded-full bg-card px-3 py-1.5 text-[13px] text-ink ring-1 ring-black/5">
-                  {i}
-                </span>
+                <TechChip key={i} label={i} className="bg-card px-3 py-1.5 text-[13px] text-ink ring-1 ring-black/5" />
               ))}
             </div>
           </div>

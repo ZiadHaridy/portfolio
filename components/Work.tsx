@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { work } from "@/content/profile";
 import { ProjectDiagram } from "./Diagrams";
+import { TechChip } from "./ui/TechChip";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 
@@ -83,9 +84,7 @@ export function Work() {
                           </div>
                           <div className="flex flex-wrap gap-1.5">
                             {w.stack.map((s) => (
-                              <span key={s} className="rounded-full bg-paper px-3 py-1 font-mono text-[11.5px] text-ink-2">
-                                {s}
-                              </span>
+                              <TechChip key={s} label={s} className="bg-paper px-3 py-1 font-mono text-[11.5px] text-ink-2" />
                             ))}
                           </div>
                         </div>

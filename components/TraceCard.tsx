@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useLens } from "./LensContext";
 
-type Span = { name: string; detail?: string; start: number; dur: number; tone?: "accent" | "ok" | "ink" };
+type Span = { name: string; detail?: string; start: number; dur: number; tone?: "accent" | "ok" | "ink"; icon?: string };
 
 function buildSpans(role: string, jitter: () => number): Span[] {
   const auth = 2 + jitter();
@@ -16,12 +16,12 @@ function buildSpans(role: string, jitter: () => number): Span[] {
   const s: Span[] = [];
   s.push({ name: "auth.verify", detail: `role=${role}`, start: t, dur: auth, tone: "ink" });
   t += auth;
-  s.push({ name: "cache.get", detail: '"experience" HIT', start: t, dur: cache, tone: "ok" });
+  s.push({ name: "cache.get", detail: '"experience" HIT', start: t, dur: cache, tone: "ok", icon: "/tech/redis.svg" });
   t += cache;
-  s.push({ name: "postgres.query", detail: "projects", start: t, dur: pg, tone: "ink" });
-  s.push({ name: "mongo.aggregate", detail: "impact", start: t + 1, dur: mongo, tone: "ink" }); // parallel
+  s.push({ name: "postgres.query", detail: "projects", start: t, dur: pg, tone: "ink", icon: "/tech/postgresql.svg" });
+  s.push({ name: "mongo.aggregate", detail: "impact", start: t + 1, dur: mongo, tone: "ink", icon: "/tech/mongodb.svg" }); // parallel
   t += Math.max(pg, mongo + 1);
-  s.push({ name: "queue.publish", detail: '"interview.requested"', start: t, dur: q, tone: "accent" });
+  s.push({ name: "queue.publish", detail: '"interview.requested"', start: t, dur: q, tone: "accent", icon: "/tech/aws-sqs.svg" });
   t += q;
   s.push({ name: "respond", detail: "{ open_to_work: true }", start: t, dur: res, tone: "ok" });
   return s;
@@ -80,6 +80,10 @@ export function TraceCard() {
             <li key={s.name} className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_2.5rem] items-center gap-3">
               <span className="truncate text-white/80">
                 <span className="text-white/30">{i === spans.length - 1 ? "└─" : "├─"} </span>
+                {s.icon && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.icon} alt="" aria-hidden width={12} height={12} className="mr-1.5 inline-block h-3 w-3 -translate-y-px rounded-[3px] bg-white/90 object-contain p-[1px]" />
+                )}
                 {s.name}
                 <span className="text-white/40"> {s.detail}</span>
               </span>

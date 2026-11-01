@@ -61,3 +61,7 @@ The Figma file **portfolio** has matching foundations (color variables, Geist te
 
 ![Hero](docs/hero.png)
 ![Systems Lab](docs/systems-lab.png)
+
+## Credits
+
+Technology logos in `public/tech/` come from [Devicon](https://devicon.dev) (MIT), [Simple Icons](https://simpleicons.org) (CC0) and the [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) via the `aws-icons` package (MIT). Logos are trademarks of their owners. Company logos in `public/logos/` belong to their respective companies.
