@@ -8,6 +8,17 @@ function Item({ c }: { c: (typeof companies)[number] }) {
     .slice(0, 2)
     .map((w) => w[0])
     .join("");
+  if (c.logo && c.wide) {
+    // wordmark logos already spell the name, so show the mark + tag only
+    return (
+      <li className="group/logo flex shrink-0 flex-col justify-center gap-1.5 rounded-[22px] bg-slab px-6 py-3.5 ring-1 ring-black/[0.04] transition duration-300 hover:bg-card hover:shadow-[0_12px_32px_-14px_rgba(17,17,16,0.25)]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={c.logo} alt={`${c.name} logo`} loading="lazy" className="h-7 w-auto max-w-[150px] object-contain object-left opacity-80 grayscale transition duration-300 group-hover/logo:opacity-100 group-hover/logo:grayscale-0" />
+        <span className="sr-only">{c.name}</span>
+        <span className="block whitespace-nowrap font-mono text-[10.5px] uppercase tracking-wider text-mute">{c.tag}</span>
+      </li>
+    );
+  }
   return (
     <li className="group/logo flex shrink-0 items-center gap-4 rounded-[22px] bg-slab px-5 py-3.5 ring-1 ring-black/[0.04] transition duration-300 hover:bg-card hover:shadow-[0_12px_32px_-14px_rgba(17,17,16,0.25)]">
       <span className="flex h-12 w-12 shrink-0 items-center justify-center">

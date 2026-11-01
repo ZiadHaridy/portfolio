@@ -88,9 +88,9 @@ export const lenses: Record<Lens, { label: string; emoji: string; title: string;
 };
 
 // logo: file in /public/logos. Without a logo the marquee shows a monogram.
-export const companies: { name: string; tag: string; logo?: string }[] = [
+export const companies: { name: string; tag: string; logo?: string; wide?: boolean }[] = [
   { name: "Proven Solution", tag: "CRM · Spring Cloud on AWS", logo: "/logos/proven.png" },
-  { name: "Nuxera", tag: "Healthcare AI" },
+  { name: "Nuxera", tag: "Healthcare AI", logo: "/logos/nuxera.png", wide: true },
   { name: "Solid Ground Solutions", tag: "US · Voice AI SaaS" },
   { name: "Nugttah", tag: "Loyalty & F&B", logo: "/logos/nugttah.png" },
   { name: "Botit", tag: "E-commerce & delivery", logo: "/logos/botit.png" },
@@ -552,7 +552,7 @@ export const credentials: { kind: "award" | "community" | "course"; title: strin
 // cover: image in /public/books. Without one, the bookshelf draws a typographic cover.
 export const books: { title: string; author: string; subtitle?: string; cover?: string; color?: string }[] = [
   { title: "Designing Data-Intensive Applications", author: "Martin Kleppmann", subtitle: "The big ideas behind reliable, scalable, and maintainable systems", cover: "/books/ddia.jpg" },
-  { title: "Software Architecture in Practice", author: "Len Bass, Paul Clements, Rick Kazman", subtitle: "Fourth edition · SEI Series in Software Engineering", color: "#5b4a8b" },
+  { title: "Software Architecture in Practice", author: "Len Bass, Paul Clements, Rick Kazman", subtitle: "Fourth edition · SEI Series in Software Engineering", cover: "/books/software-architecture-in-practice.jpg" },
   { title: "Clean Architecture", author: "Robert C. Martin", subtitle: "A Craftsman's Guide to Software Structure and Design", cover: "/books/clean-architecture.jpg" },
   { title: "Clean Code", author: "Robert C. Martin", subtitle: "A Handbook of Agile Software Craftsmanship", cover: "/books/clean-code.jpg" },
   { title: "Dive Into Design Patterns", author: "Alexander Shvets", cover: "/books/design-patterns.jpg" },
