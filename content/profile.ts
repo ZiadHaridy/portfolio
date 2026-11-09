@@ -542,6 +542,24 @@ export const books: { title: string; author: string; subtitle?: string; cover?: 
   { title: "Dive Into Design Patterns", author: "Alexander Shvets", cover: "/books/design-patterns.jpg" },
 ];
 
+export const recommendations = [
+  {
+    quote:
+      "He could take a loosely defined business need, translate it into a sound technical design, and ship a working solution without losing sight of maintainability or performance.",
+    more: [
+      "As Team Lead, Ziad set the technical direction for his team and raised the standard of everyone around him.",
+      "I recommend Ziad without reservation.",
+    ],
+    name: "Dr. Youssef",
+    title: "Chief Executive Officer & Owner",
+    company: "Solid Ground Solutions LLC",
+    context: "Platform Engineer & Team Lead · 1 year",
+    letter: "/letters/solid-ground-recommendation.pdf",
+    image: "/letters/solid-ground-recommendation.jpg",
+    thumb: "/letters/solid-ground-recommendation-thumb.jpg",
+  },
+];
+
 export type AchievementCat = "performance" | "reliability" | "security" | "cloud" | "builds" | "leadership" | "awards";
 
 export const achievementCats: { id: AchievementCat; label: string }[] = [
@@ -598,6 +616,7 @@ export const achievements: { cat: AchievementCat; value: string; text: string; o
   { cat: "builds", value: "Retool → own", text: "replaced Retool with a custom internal dashboard", org: "Botit" },
   { cat: "leadership", value: "Team lead", text: "Senior Team Lead Software Engineer", org: "Proven Solution", top: true },
   { cat: "leadership", value: "Hiring", text: "led the engineering interview process", org: "Botit" },
+  { cat: "leadership", value: "Recommended", text: "by the CEO for platform engineering and team leadership (letter on this site)", org: "Solid Ground" },
   { cat: "leadership", value: "Playbook", text: "wrote the engineering playbook adopted across the codebase", org: "Solid Ground" },
   { cat: "leadership", value: "Runbook", text: "wrote the deployment & operations runbook", org: "Proven Solution" },
   { cat: "leadership", value: "TA", text: "teaching Software Component Design and Software Architecture", org: "AASTMT" },

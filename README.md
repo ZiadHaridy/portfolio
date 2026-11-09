@@ -14,7 +14,8 @@ A portfolio for a senior software engineer: it shows the work running instead of
 | **About (bento)** | Experience timeline, live local time (Egypt), education, a five-book bookshelf, "How I work" stepper |
 | **Systems Lab** | Interactive demos: **Deficit Round Robin vs FIFO call dispatcher** with **Redis/Lua leader election** (kill the leader), a **KO-DB shell** (SET/GET/DEL, CRASH → WAL replay, sharding), and **performance replays** (COLLSCAN vs IXSCAN race, buffered vs re-architected export memory) |
 | **Selected work** | The four best systems only (healthcare AI, CRM on Spring Cloud, AI voice agent, KO-DB), as accordion case studies with architecture diagrams that use real tech logos |
-| **Achievements** | Every win in one place: 51 achievements, filterable by Performance, Reliability, Security, Cost & cloud, Built, Leadership and Awards & learning. Shows the top 9 first (6 on phones) |
+| **Achievements** | Every win in one place: 52 achievements, filterable by Performance, Reliability, Security, Cost & cloud, Built, Leadership and Awards & learning. Shows the top 9 first (6 on phones) |
+| **Recommendation** | Signed letter from the CEO of Solid Ground Solutions: pull quote, a thumbnail that opens the full letter, and a PDF download (`public/letters/`) |
 | **Postmortems** | Status-page style history of the four biggest incidents (region evacuation, leaked key, RDS outage…); the rest live in Achievements |
 | **Stack / Student corner / FAQ / Contact** | Filterable skills, a compact TA corner with a backend roadmap, a four-question recruiter FAQ, Email / WhatsApp / LinkedIn |
 | **Navigation** | Floating nav on desktop; on phones and tablets a **burger menu** opens a full-screen sheet with numbered sections, Email / CV and socials |

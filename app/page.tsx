@@ -1,6 +1,7 @@
 import { Bento } from "@/components/Bento";
 import { Contact } from "@/components/Contact";
 import { Achievements } from "@/components/Achievements";
+import { Recommendation } from "@/components/Recommendation";
 import { Faq } from "@/components/Faq";
 import { Hero } from "@/components/Hero";
 import { Incidents } from "@/components/Incidents";
@@ -21,6 +22,7 @@ export default function Page() {
         <Lab />
         <Work />
         <Achievements />
+        <Recommendation />
         <Incidents />
         <Stack />
         <Students />
