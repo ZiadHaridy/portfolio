@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { work } from "@/content/profile";
 import { ProjectDiagram } from "./Diagrams";
 import { TechChip } from "./ui/TechChip";
@@ -10,11 +10,34 @@ import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 export function Work() {
   const featured = work.filter((w) => "featured" in w && w.featured);
   const [open, setOpen] = useState<string | null>(featured[0]?.id ?? null);
+  const infra = featured.find((w) => "architecture" in w && w.architecture);
+
+  // ziad-dev.com/#infra opens the project with the production architecture and scrolls to it.
+  useEffect(() => {
+    if (!infra) return;
+    const show = () => {
+      if (window.location.hash !== "#infra") return;
+      setOpen(infra.id);
+      setTimeout(() => document.getElementById(`project-${infra.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 650);
+    };
+    show();
+    window.addEventListener("hashchange", show);
+    return () => window.removeEventListener("hashchange", show);
+  }, [infra]);
   return (
     <section id="work" className="slab bg-slab px-5 py-20 sm:px-10 sm:py-24 lg:px-14">
       <SectionLabel tilt={-4}>Selected work</SectionLabel>
       <Reveal className="mt-12">
-        <SectionHeading title={`${["", "One system", "Two systems", "Three systems", "Four systems", "Five systems", "Six systems"][featured.length] ?? featured.length + " systems"},`} muted="the best of what I've shipped." lead="The rest of the wins are in Achievements below." />
+        <SectionHeading title={`${["", "One system", "Two systems", "Three systems", "Four systems", "Five systems", "Six systems"][featured.length] ?? featured.length + " systems"},`} muted="the best of what I've shipped." lead={
+            <>
+              The rest of the wins are in Achievements below.{" "}
+              {infra && (
+                <a href="#infra" onClick={() => { if (window.location.hash === "#infra") window.dispatchEvent(new HashChangeEvent("hashchange")); }} className="font-medium text-ink underline decoration-accent decoration-2 underline-offset-4 transition hover:text-accent">
+                  See the AWS infrastructure I designed →
+                </a>
+              )}
+            </>
+          } />
       </Reveal>
 
       <div className="mt-14 divide-y divide-line border-y border-line">
@@ -23,7 +46,7 @@ export function Work() {
           const isOpen = open === w.id;
           return (
             <Reveal key={w.id}>
-              <article className="py-7 sm:py-8">
+              <article id={`project-${w.id}`} className="scroll-mt-24 py-7 sm:py-8">
                 <button onClick={() => setOpen(isOpen ? null : w.id)} className="group grid w-full grid-cols-[2.5rem_1fr_auto] items-start gap-4 text-left sm:grid-cols-[4rem_1.3fr_1fr_auto] sm:gap-6" aria-expanded={isOpen}>
                   <span className="pt-1.5 font-mono text-[12px] text-mute">[{num}]</span>
                   <span>
