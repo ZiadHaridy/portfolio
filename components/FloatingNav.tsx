@@ -6,7 +6,7 @@ import { BurgerButton } from "./MenuContext";
 import { sections } from "./navSections";
 
 // desktop shows a shorter list; the mobile menu shows every section
-const links = sections.filter((s) => ["#impact", "#lab", "#work", "#achievements", "#incidents", "#stack", "#contact"].includes(s.href)).map((s) => [s.label === "Systems Lab" ? "Lab" : s.label, s.href]);
+const links = sections.filter((s) => ["#impact", "#infra", "#lab", "#work", "#achievements", "#incidents", "#stack", "#contact"].includes(s.href)).map((s) => [s.label === "Systems Lab" ? "Lab" : s.label === "Infrastructure" ? "Infra" : s.label, s.href]);
 
 export function FloatingNav({ onOpenPalette }: { onOpenPalette: () => void }) {
   const { scrollY } = useScroll();

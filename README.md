@@ -11,6 +11,7 @@ A portfolio for a senior software engineer: it shows the work running instead of
 | **Hero** | Rotating headline, "Open to work", and a **live distributed-trace waterfall** (`GET /v1/engineers/ziad-ahmed`) |
 | **"Who's reading?" lens** | Recruiter / Engineer / Student buttons. Each one shows a tailored panel (30-sec summary + CV, systems-lab pointer, student corner), and the trace's `role=` changes with it |
 | **Benchmarks** | Partner-logo marquee of the companies Ziad has worked with, plus count-up production metrics: 115×, −98%, 140×, ~$2K/yr, 153 APIs, 804 → 1 |
+| **Infrastructure** | The production AWS + Cloudflare setup of the booking startup as a live diagram: real request flows (booking, ID upload, photos, email bounces, deploys, admin sign-in) play on a loop, with narration; data in `content/infra.ts`, icons in `public/infra/` |
 | **About (bento)** | Experience timeline, live local time (Egypt), education, a five-book bookshelf, "How I work" stepper |
 | **Systems Lab** | Interactive demos: **Deficit Round Robin vs FIFO call dispatcher** with **Redis/Lua leader election** (kill the leader), a **KO-DB shell** (SET/GET/DEL, CRASH → WAL replay, sharding), and **performance replays** (COLLSCAN vs IXSCAN race, buffered vs re-architected export memory) |
 | **Selected work** | The four best systems only (healthcare AI, CRM on Spring Cloud, AI voice agent, KO-DB), as accordion case studies with architecture diagrams that use real tech logos |

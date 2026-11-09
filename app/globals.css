@@ -108,6 +108,11 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 
+/* Infrastructure diagram: slow "traffic" on every wire, and the narration fade. */
+.infra-flow { stroke-dasharray: 2 12; animation: infra-dash 1.8s linear infinite; }
+@keyframes infra-dash { to { stroke-dashoffset: -28; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

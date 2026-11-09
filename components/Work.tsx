@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { work } from "@/content/profile";
 import { ProjectDiagram } from "./Diagrams";
 import { TechChip } from "./ui/TechChip";
@@ -11,19 +11,6 @@ export function Work() {
   const featured = work.filter((w) => "featured" in w && w.featured);
   const [open, setOpen] = useState<string | null>(featured[0]?.id ?? null);
   const infra = featured.find((w) => "architecture" in w && w.architecture);
-
-  // ziad-dev.com/#infra opens the project with the production architecture and scrolls to it.
-  useEffect(() => {
-    if (!infra) return;
-    const show = () => {
-      if (window.location.hash !== "#infra") return;
-      setOpen(infra.id);
-      setTimeout(() => document.getElementById(`project-${infra.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 650);
-    };
-    show();
-    window.addEventListener("hashchange", show);
-    return () => window.removeEventListener("hashchange", show);
-  }, [infra]);
   return (
     <section id="work" className="slab bg-slab px-5 py-20 sm:px-10 sm:py-24 lg:px-14">
       <SectionLabel tilt={-4}>Selected work</SectionLabel>
@@ -32,8 +19,8 @@ export function Work() {
             <>
               The rest of the wins are in Achievements below.{" "}
               {infra && (
-                <a href="#infra" onClick={() => { if (window.location.hash === "#infra") window.dispatchEvent(new HashChangeEvent("hashchange")); }} className="font-medium text-ink underline decoration-accent decoration-2 underline-offset-4 transition hover:text-accent">
-                  See the AWS infrastructure I designed →
+                <a href="#infra" className="font-medium text-ink underline decoration-accent decoration-2 underline-offset-4 transition hover:text-accent">
+                  See the AWS infrastructure I designed, live ↑
                 </a>
               )}
             </>
@@ -46,7 +33,7 @@ export function Work() {
           const isOpen = open === w.id;
           return (
             <Reveal key={w.id}>
-              <article id={`project-${w.id}`} className="scroll-mt-24 py-7 sm:py-8">
+              <article className="py-7 sm:py-8">
                 <button onClick={() => setOpen(isOpen ? null : w.id)} className="group grid w-full grid-cols-[2.5rem_1fr_auto] items-start gap-4 text-left sm:grid-cols-[4rem_1.3fr_1fr_auto] sm:gap-6" aria-expanded={isOpen}>
                   <span className="pt-1.5 font-mono text-[12px] text-mute">[{num}]</span>
                   <span>
@@ -115,21 +102,18 @@ export function Work() {
                         </div>
                       </div>
                       {"architecture" in w && w.architecture && (
-                        <figure className="mt-8 sm:ml-[5.5rem]">
-                          <div className="flex items-center justify-between gap-3">
-                            <figcaption className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">Production architecture · sanitized</figcaption>
-                            <a href={w.architecture.full} target="_blank" rel="noreferrer" className="rounded-full bg-slab px-3 py-1.5 text-[12px] font-medium text-ink ring-1 ring-black/5 transition hover:bg-paper">
-                              Open full size ↗
-                            </a>
-                          </div>
-                          <a href={w.architecture.full} target="_blank" rel="noreferrer" className="mt-3 block overflow-x-auto rounded-[20px] bg-card ring-1 ring-black/5 card-shadow">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={w.architecture.src} alt={w.architecture.alt} width={1600} height={1010} loading="lazy" className="h-auto w-full min-w-[720px]" />
-                          </a>
-                          <p className="mt-3 text-[13px] leading-relaxed text-mute">
-                            Cloudflare answers DNS for the API and media subdomains without proxying them, so the apps talk straight to AWS. Domains, IPs and resource names are removed.
-                          </p>
-                        </figure>
+                        <a
+                          href="#infra"
+                          className="group mt-7 flex items-center gap-4 rounded-[20px] bg-night p-3 pr-5 text-white ring-1 ring-black/5 transition hover:-translate-y-0.5 sm:ml-[5.5rem]"
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={w.architecture.src} alt="" width={160} height={101} loading="lazy" className="h-[60px] w-[96px] rounded-xl object-cover object-left-top opacity-90" />
+                          <span className="flex-1">
+                            <span className="block text-[15px] font-semibold">The production architecture behind this project</span>
+                            <span className="block text-[13px] text-white/55">Animated, with real request flows, in the Infrastructure section</span>
+                          </span>
+                          <span className="text-accent transition group-hover:-translate-y-0.5">↑</span>
+                        </a>
                       )}
                     </motion.div>
                   )}

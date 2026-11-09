@@ -207,13 +207,22 @@ export function Hero() {
             <OpenToWork />
             <span className="rounded-full bg-card px-3.5 py-1.5 font-mono text-[12px] text-ink-2 ring-1 ring-black/5">{profile.role} · 5+ yrs</span>
           </motion.div>
-          <motion.div {...fade(0.3)} className="flex flex-col gap-5 sm:flex-row sm:items-center">
+          <motion.div {...fade(0.3)} className="flex flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${profile.email}?subject=Let's%20talk%20backend`}
               className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-ink px-7 py-4 text-[17px] font-medium text-card transition hover:bg-accent"
             >
               Let&apos;s talk <span aria-hidden>↗</span>
             </a>
+            <a
+              href="#infra"
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-card px-6 py-4 text-[16px] font-medium text-ink ring-1 ring-black/10 transition hover:ring-accent"
+            >
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
+              See my AWS infra <span aria-hidden>↓</span>
+            </a>
+            </div>
             <p className="max-w-md text-pretty text-[15px] leading-relaxed text-ink-2/80">
               Node.js · Go · Java/Spring Boot on PostgreSQL, MongoDB &amp; Redis, running on AWS. And yes, I ship <span className="text-ink">React, Next.js &amp; React Native</span> too.
             </p>

@@ -5,6 +5,7 @@ import { Recommendation } from "@/components/Recommendation";
 import { Faq } from "@/components/Faq";
 import { Hero } from "@/components/Hero";
 import { Incidents } from "@/components/Incidents";
+import { Infra } from "@/components/Infra";
 import { Lab } from "@/components/Lab";
 import { Metrics } from "@/components/Metrics";
 import { Shell } from "@/components/Shell";
@@ -18,6 +19,7 @@ export default function Page() {
       <main className="mx-auto max-w-[1320px] space-y-3 p-3 sm:p-5">
         <Hero />
         <Metrics />
+        <Infra />
         <Bento />
         <Lab />
         <Work />

@@ -24,12 +24,7 @@ export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: 
       { id: "mail", label: "Send an email", hint: "mailto", run: () => (window.location.href = `mailto:${profile.email}`) },
       { id: "lab", label: "Open the Systems Lab", hint: "#lab", run: go("#lab") },
       { id: "work", label: "Selected work", hint: "#work", run: go("#work") },
-      {
-        id: "infra",
-        label: "AWS infrastructure I designed",
-        hint: "#infra",
-        run: () => (window.location.hash === "#infra" ? window.dispatchEvent(new HashChangeEvent("hashchange")) : (window.location.hash = "infra")),
-      },
+      { id: "infra", label: "AWS infrastructure I designed (live diagram)", hint: "#infra", run: go("#infra") },
       { id: "ach", label: "All achievements", hint: "#achievements", run: go("#achievements") },
       { id: "inc", label: "Postmortems / incidents", hint: "#incidents", run: go("#incidents") },
       { id: "about", label: "About & experience", hint: "#about", run: go("#about") },
