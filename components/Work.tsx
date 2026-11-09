@@ -8,16 +8,17 @@ import { Reveal } from "./ui/Reveal";
 import { SectionHeading, SectionLabel } from "./ui/SectionLabel";
 
 export function Work() {
-  const [open, setOpen] = useState<string | null>(work.find((w) => "featured" in w && w.featured)?.id ?? null);
+  const featured = work.filter((w) => "featured" in w && w.featured);
+  const [open, setOpen] = useState<string | null>(featured[0]?.id ?? null);
   return (
     <section id="work" className="slab bg-slab px-5 py-20 sm:px-10 sm:py-24 lg:px-14">
       <SectionLabel tilt={-4}>Selected work</SectionLabel>
       <Reveal className="mt-12">
-        <SectionHeading title="Four systems," muted="the best of what I've shipped." lead="The rest of the wins are in Achievements below." />
+        <SectionHeading title={`${["", "One system", "Two systems", "Three systems", "Four systems", "Five systems", "Six systems"][featured.length] ?? featured.length + " systems"},`} muted="the best of what I've shipped." lead="The rest of the wins are in Achievements below." />
       </Reveal>
 
       <div className="mt-14 divide-y divide-line border-y border-line">
-        {work.filter((w) => "featured" in w && w.featured).map((w, idx) => {
+        {featured.map((w, idx) => {
           const num = String(idx + 1).padStart(2, "0");
           const isOpen = open === w.id;
           return (
@@ -90,6 +91,23 @@ export function Work() {
                           </div>
                         </div>
                       </div>
+                      {"architecture" in w && w.architecture && (
+                        <figure className="mt-8 sm:ml-[5.5rem]">
+                          <div className="flex items-center justify-between gap-3">
+                            <figcaption className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">Production architecture · sanitized</figcaption>
+                            <a href={w.architecture.full} target="_blank" rel="noreferrer" className="rounded-full bg-slab px-3 py-1.5 text-[12px] font-medium text-ink ring-1 ring-black/5 transition hover:bg-paper">
+                              Open full size ↗
+                            </a>
+                          </div>
+                          <a href={w.architecture.full} target="_blank" rel="noreferrer" className="mt-3 block overflow-x-auto rounded-[20px] bg-card ring-1 ring-black/5 card-shadow">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={w.architecture.src} alt={w.architecture.alt} width={1600} height={1010} loading="lazy" className="h-auto w-full min-w-[720px]" />
+                          </a>
+                          <p className="mt-3 text-[13px] leading-relaxed text-mute">
+                            Cloudflare answers DNS for the API and media subdomains without proxying them, so the apps talk straight to AWS. Domains, IPs and resource names are removed.
+                          </p>
+                        </figure>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

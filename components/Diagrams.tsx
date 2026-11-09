@@ -162,6 +162,24 @@ export function ProjectDiagram({ kind }: { kind: string }) {
           edges={[[0, 1], [1, 2], [1, 3], [3, 5], [5, 4], [5, 6], [2, 7]]}
         />
       );
+    case "booking":
+      return (
+        <Diagram
+          label="Booking platform: mobile apps reach Caddy and a Node.js API on one EC2 instance, with Redis, MongoDB Atlas, S3 behind CloudFront, and SES for email"
+          boxes={[
+            { col: 0, row: 0, label: "mobile apps", icon: "React Native" },
+            { col: 1, row: 0, label: "Cloudflare", icon: "Cloudflare" },
+            { col: 2, row: 0, label: "CloudFront", icon: "CloudFront" },
+            { col: 1, row: 1, label: "Node API · EC2", icon: "Node.js", accent: true },
+            { col: 0, row: 1, label: "Redis", icon: "Redis" },
+            { col: 2, row: 1, label: "S3", icon: "S3" },
+            { col: 0, row: 2, label: "MongoDB", icon: "MongoDB" },
+            { col: 1, row: 2, label: "SES · SNS", icon: "SES" },
+            { col: 2, row: 2, label: "GH Actions", icon: "GitHub Actions" },
+          ]}
+          edges={[[0, 1], [0, 3], [0, 2], [2, 5], [3, 4], [3, 5], [3, 6], [3, 7], [8, 3]]}
+        />
+      );
     default:
       return (
         <Diagram
