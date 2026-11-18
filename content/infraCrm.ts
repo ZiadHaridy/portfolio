@@ -50,6 +50,7 @@ export const crmBefore: InfraDiagram = {
       tone: "bad",
       steps: [
         { edges: ["gh-ec2"], nodes: ["gh"], text: "Deploys SSH'd into the server with keys stored in GitHub, then someone re-ran Docker Compose by hand." },
+        { edges: [], nodes: ["gh"], text: "The repo's Git history held database dumps and keys, so the new repos start with clean history." },
         { edges: ["hub-ec2"], nodes: ["hub"], text: "Container images came from public Docker Hub instead of a private registry." },
         { edges: [], nodes: ["gw", "be", "nt", "eu", "mq"], text: "Secrets lived in the compose file and were baked into the jar." },
         { edges: ["u-cdn", "cdn-nginx"], nodes: ["cdn", "nginx"], text: "The frontends depended on nginx running on that same server." },
@@ -64,7 +65,7 @@ const bus = (y: number): [number, number][] => [[1120, 480], [1240, 480], [1240,
 export const crmAfter: InfraDiagram = {
   id: "after",
   label: "After",
-  caption: "UAT rebuilt on ECS + Terraform",
+  caption: "UAT + prod on ECS + Terraform",
   h: 1010,
   groups: [
     { id: "aws", x: 205, y: 15, w: 1370, h: 985, title: "AWS Cloud", icon: "g-aws", tone: "aws" },
@@ -92,11 +93,11 @@ export const crmAfter: InfraDiagram = {
   nodes: [
     { id: "users", x: 90, y: 170, icon: "users", label: "Users", sub: "web · mobile" },
     { id: "dns", x: 90, y: 400, icon: "dns", label: "Domain DNS", sub: "CNAME → CloudFront" },
-    { id: "gha", x: 90, y: 680, icon: "github-actions", label: "GitHub Actions", sub: "5 repos · develop" },
+    { id: "gha", x: 90, y: 680, icon: "github-actions", label: "GitHub Actions", sub: "5 repos · gitleaks" },
     { id: "cdn1", x: 385, y: 170, icon: "cloudfront", label: "CloudFront", sub: "site + API", sub2: "edge path routing" },
     { id: "cdn2", x: 385, y: 420, icon: "cloudfront", label: "CloudFront", sub: "admin" },
     { id: "oidc", x: 310, y: 730, icon: "key", label: "OIDC provider", sub: "GitHub" },
-    { id: "role", x: 455, y: 730, icon: "iam", label: "Deploy roles", sub: "develop branch only" },
+    { id: "role", x: 455, y: 730, icon: "iam", label: "Deploy roles", sub: "develop → UAT · main → prod" },
     { id: "acm", x: 310, y: 905, icon: "acm", label: "ACM", sub: "auto-renewing TLS" },
     { id: "tf", x: 455, y: 905, icon: "terraform", label: "Terraform", sub: "state in S3" },
     { id: "web", x: 1180, y: 110, icon: "s3", label: "Frontend bucket", sub: "private · OAC" },
@@ -151,7 +152,7 @@ export const crmAfter: InfraDiagram = {
       id: "deploy",
       label: "Ship a release",
       steps: [
-        { edges: ["gha-oidc", "oidc-role"], nodes: ["gha", "oidc", "role"], text: "GitHub Actions signs in with a short-lived OIDC token. Each repo's role only works from its own develop branch, so no AWS or SSH keys live in GitHub." },
+        { edges: ["gha-oidc", "oidc-role"], nodes: ["gha", "oidc", "role"], text: "Every PR runs a gitleaks secret scan, the tests and the build. On merge, GitHub Actions signs in with a short-lived OIDC token: develop deploys to UAT, main to prod, and no AWS or SSH keys live in GitHub." },
         { edges: ["role-deploy"], nodes: ["role", "ecr", "web"], text: "Once tests pass, the pipeline builds the frontend to S3, pushes the image to a private ECR and updates the ECS service." },
         { edges: ["ecs-ecr", "ecs-ps", "ecs-cw"], nodes: ["ecr", "ps", "cw", "api", "nt"], text: "ECS starts the new task: image from ECR, secrets from Parameter Store, logs to CloudWatch. Nobody SSHs in." },
       ],

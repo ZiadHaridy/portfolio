@@ -28,7 +28,7 @@ export function Incidents() {
         <SectionHeading
           title="The 3am stories."
           muted="Real incidents, handled."
-          lead="Anyone can build the happy path. Four times production caught fire, and what I did, written as blameless postmortems."
+          lead="Anyone can build the happy path. Here is what I did when production caught fire, including when I lit the match, written as blameless postmortems."
         />
       </Reveal>
 
