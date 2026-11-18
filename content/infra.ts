@@ -13,7 +13,9 @@ export type InfraGroup = {
   h: number;
   title: string;
   icon?: string;
-  tone: "plain" | "aws" | "region" | "s3" | "ec2";
+  tone: "plain" | "aws" | "region" | "s3" | "ec2" | "dashed" | "vpc" | "subnet" | "sg" | "asg";
+  /** Plain text lines listed inside the group (e.g. third-party APIs). */
+  items?: string[];
 };
 export type InfraEdge = {
   id: string;
@@ -25,9 +27,30 @@ export type InfraEdge = {
   arrow?: boolean;
   /** Only drawn while highlighted: its segments are already drawn by other edges. */
   ghost?: boolean;
+  /** deploy = blue pipeline arrow, async = dashed. */
+  kind?: "deploy" | "async";
 };
 export type InfraStep = { edges: string[]; nodes: string[]; text: string };
-export type InfraScenario = { id: string; label: string; steps: InfraStep[] };
+export type InfraScenario = { id: string; label: string; steps: InfraStep[]; tone?: "bad" };
+export type InfraDiagram = {
+  id: string;
+  label: string;
+  caption: string;
+  h: number;
+  groups: InfraGroup[];
+  nodes: InfraNode[];
+  edges: InfraEdge[];
+  scenarios: InfraScenario[];
+};
+export type InfraSystem = {
+  id: string;
+  kicker: string;
+  title: string;
+  blurb: string;
+  facts: { value: string; label: string }[];
+  diagrams: InfraDiagram[];
+  note?: string;
+};
 
 export const infraFacts = [
   { value: "10", label: "AWS services, one region" },
@@ -170,5 +193,34 @@ export const infraScenarios: InfraScenario[] = [
       { edges: ["zt-pages"], nodes: ["zt", "pages"], text: "Only after that check does Cloudflare Pages serve the admin app." },
       { edges: ["pages-api"], nodes: ["pages", "eip"], text: "The browser then calls the API directly, the same way the mobile apps do." },
     ],
+  },
+];
+
+import { crmAfter, crmBefore } from "./infraCrm";
+
+export const infraSystems: InfraSystem[] = [
+  {
+    id: "booking",
+    kicker: "My startup",
+    title: "Salon & barber booking platform",
+    blurb: "2 mobile apps and 3 web apps on one lean, locked-down AWS footprint, designed and run by me.",
+    facts: infraFacts,
+    diagrams: [
+      { id: "prod", label: "Production", caption: "Live in production", h: 1010, groups: infraGroups, nodes: infraNodes, edges: infraEdges, scenarios: infraScenarios },
+    ],
+  },
+  {
+    id: "crm",
+    kicker: "Client project · Project Lead",
+    title: "Real estate CRM: before → after",
+    blurb: "I rebuilt the UAT environment from one hand-deployed server into ECS on Terraform, and cut the AWS bill while doing it.",
+    facts: [
+      { value: "−$41", label: "a month: old UAT replaced and an unused server cleaned up" },
+      { value: "0", label: "SSH ports open, and no AWS or SSH keys stored in GitHub" },
+      { value: "5", label: "repos, each with its own test-build-deploy pipeline" },
+      { value: "IaC", label: "the new environment is defined in Terraform, state in S3" },
+    ],
+    diagrams: [crmBefore, crmAfter],
+    note: "Client details removed. The new design is live in UAT; production still runs the old one for now.",
   },
 ];
